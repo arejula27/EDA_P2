@@ -1,0 +1,46 @@
+LT
+AL
+uno
+Ayer no estuve
+pepe
+1980
+1
+LT
+AL
+dos
+Cabalgando con mi caballo
+ana
+1973
+2
+LT
+AL
+uno
+otro titulo
+pepe
+1980
+3
+LT
+LD
+tres
+AE
+uno
+LD
+uno
+LT
+AE
+tres
+LT
+EE
+uno
+LT
+EE
+uno
+LT
+EE
+uno
+LT
+EL
+tres
+EL
+dos
+LT
