@@ -32,5 +32,5 @@
 *.app
 
 #finder
-*.DS_STORE
+*.DS_Store
 
