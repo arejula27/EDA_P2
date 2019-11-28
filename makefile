@@ -18,17 +18,20 @@ EJEC = main_p2
 DIR_LIBS=../libreria
 LIB_BOOK = ${DIR_LIBS}/libro
 BOOK = ${LIB_BOOK}/libro
+LIB_COLEC =${DIR_LIBS}/coleccion
+COLEC = ${LIB_COLEC}/coleccion
 #---------------------------------------------------------
 # para compilación y enlazado ("linkado")
-CPPFLAGS=-I. -I${LIB_BOOK} -std=c++11    #opciones compilación
+CPPFLAGS=-I. -I${LIB_BOOK} -I${LIB_COLEC} -std=c++11    #opciones compilación
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${EJEC} ${CPPFLAGS} 
-
 #---------------------------------------------------------
 ${BOOK}.o: ${BOOK}.cpp
 	$(CC) ${BOOK}.cpp -c ${CPPFLAGS} 
-
+#---------------------------------------------------------
+${COLEC}.o: ${COLEC}.cpp
+	$(CC) ${COLEC}.cpp -c ${CPPFLAGS} 
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
