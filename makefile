@@ -14,15 +14,15 @@ RM = /bin/rm -f  # para limpiar
 CC = g++        # para compilar
 #---------------------------------------------------------
 # vars
-EJEC = practica2.cpp
-DIR_LIBS=../libreria
+EJEC = practica2
+DIR_LIBS=./libreria
 LIB_BOOK = ${DIR_LIBS}/libro
 BOOK = ${LIB_BOOK}/libro
 LIB_COLEC =${DIR_LIBS}/coleccion
 COLEC = ${LIB_COLEC}/coleccion
 #---------------------------------------------------------
 # para compilación y enlazado ("linkado")
-CPPFLAGS=-I. -I${LIB_BOOK} -I${LIB_COLEC} -std=c++11    #opciones compilación
+CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -std=c++11    #opciones compilación
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${EJEC} ${CPPFLAGS} 
@@ -31,7 +31,7 @@ ${EJEC}.o: ${EJEC}.cpp
 	$(CC) ${EJEC}.cpp -c ${CPPFLAGS} 
 #---------------------------------------------------------
 ${BOOK}.o: ${BOOK}.cpp
-	$(CC) ${BOOK}.cpp -c ${CPPFLAGS} 
+	$(CC) -c ${BOOK}.cpp -o ${BOOK}.o ${CPPFLAGS} 
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
