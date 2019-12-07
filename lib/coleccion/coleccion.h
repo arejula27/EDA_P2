@@ -35,47 +35,47 @@ struct coleccion;
 //––––––––––––––––––––––––––––––––––
 
 #warning DOC CREAR
-template <typename D,typename K> 
-void crear(coleccion<D, K> &c);
+template <typename K,typename D> 
+void crear(coleccion<K,D> &c);
 
 
 //devuelve true si y solo si existe un nodo con clave key
 //en la coleccion
-template <typename D, typename K>
-bool existe(const coleccion<D,K> &c, K key);
+template <typename K, typename D>
+bool existe(const coleccion<K,D> &c, K key);
 
 #warning DOC INTRODUCIR
-template <typename D, typename K>
-bool introducir( coleccion<D,K> &c,K key,D data, int rep );
+template <typename K, typename D>
+bool introducir( coleccion<K,D> &c,K key,D data, int rep );
 
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de reps se actualiza
-template <typename D, typename K>
-void agnadirRep(coleccion<D,K> &c,K key);
+template <typename K, typename D>
+void agnadirRep(coleccion<K,D> &c,K key);
 
 #warning DOC QUITARREPS
-template <typename D, typename K>
-void quitarRep(coleccion<D,K> &c,K key);
+template <typename K, typename D>
+void quitarRep(coleccion<K,D> &c,K key);
 
 //Si en la colección existe un nodo con clave key entonces se 
 //devueva una coleccion igual eliminando el nodo con dicha clave
 //y actualizando los valores de num y reps
-template <typename D, typename K>
-void eliminar(coleccion<D,K> &c,K key);
+template <typename K, typename D>
+void eliminar(coleccion<K,D> &c,K key);
 
 #warning DOC QUITARREPS
-template <typename D, typename K>
-bool obtenerInfo(coleccion<D, K> &c, K key, D &data, int &rep);
+template <typename K, typename D>
+bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rep);
 
 //devuelve el numero de nodos de la colección
-template <typename D, typename K>
-void numClaves(coleccion<D, K> &c, int &num);
+template <typename K, typename D>
+void numClaves(coleccion<K,D> &c, int &num);
 
 //Devuelve el valor de la suma, para todos los nodos 
 //(clave, dato,rep) en la colección c, de la tercera componente, rep.
-template <typename D, typename K>
-void numCardinal(coleccion<D, K> &c, int &card);
+template <typename K, typename D>
+void numCardinal(coleccion<K,D> &c, int &card);
 
 //definir operaciones del iterdador de la colecion:
 //–––––––––––––––––––––––––––––––––––––––––––––––––
@@ -83,43 +83,44 @@ void numCardinal(coleccion<D, K> &c, int &card);
 //Inicializa el iterador para recorrer los nodos de la colección c, 
 //de forma que el siguiente nodo sea el primero a visitar 
 //(situación de no haber visitado ningun nodo).
-template <typename D, typename K>
-void iniciarIterador(coleccion<D, K> &c);
+template <typename K, typename D>
+void iniciarIterador(coleccion<K,D> &c);
 
 #warning DOC EXISTESIG
-template <typename D, typename K>
-bool existeSiguiente(coleccion<D, K> &c);
+template <typename K, typename D>
+bool existeSiguiente(coleccion<K,D> &c);
 
 //Devuelve la clave, dato y  natural (número de repeticiones)
 // del siguiente nodo a visitar de c. 
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
-template <typename D, typename K>
-bool siguienteNodo(coleccion<D, K> &c, K &key, D &data, int &rep);
+template <typename K, typename D>
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep);
 
 #warning DOC AVANZA
-template <typename D, typename K>
-bool avanza(coleccion<D, K> &c);
+template <typename K, typename D>
+bool avanza(coleccion<K,D> &c);
 
 //fin de interfaz
 // Declaración:
 //–––––––––––––
 
-template <typename D, typename K>
+template <typename K, typename D>
 struct coleccion{
 
-    friend void crear<D, K>(coleccion<D , K> &c);
-    friend bool existe<D, K>(const coleccion<D, K> &c, K key);
-    friend bool introducir<D, K>(coleccion<D, K> &c, K key, D data, int rep);
-    friend void agnadirRep<D,K>(coleccion<D, K> &c, K key);
-    friend void quitarRep<D, K>(coleccion<D, K> &c, K key);
-    friend void eliminar<D,K>(coleccion<D, K> &c, K key);
-    friend bool obtenerInfo<D, K>(coleccion<D, K> &c, K key, D &data, int &rep);
-    friend void numClaves<D, K>(coleccion<D, K> &c, int &num);
-    friend void numCardinal<D, K>(coleccion<D, K> &c, int &card);
-    friend void iniciarIterador<D, K>(coleccion<D, K> &c);
-    friend bool existeSiguiente<D, K>(coleccion<D, K> &c);
-    friend bool siguienteNodo<D, K>(coleccion<D, K> &c, K &key, D &data, int &rep);
-    friend bool avanza<D, K>(coleccion<D, K> &c);
+    friend void crear<K,D>(coleccion<K,D> &c);
+    friend bool existe<K,D>(typename coleccion<K,D>::terna *paux, K key);
+    friend bool existe<K,D>(const coleccion<K,D> &c, K key);
+    friend bool introducir<K,D>(coleccion<K,D> &c, K key, D data, int rep);
+    friend void agnadirRep<K,D>(coleccion<K,D> &c, K key);
+    friend void quitarRep<K,D>(coleccion<K,D> &c, K key);
+    friend void eliminar<K,D>(coleccion<K,D> &c, K key);
+    friend bool obtenerInfo<K,D>(coleccion<K,D> &c, K key, D &data, int &rep);
+    friend void numClaves<K,D>(coleccion<K,D> &c, int &num);
+    friend void numCardinal<K,D>(coleccion<K,D> &c, int &card);
+    friend void iniciarIterador<K,D>(coleccion<K,D> &c);
+    friend bool existeSiguiente<K,D>(coleccion<K,D> &c);
+    friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rep);
+    friend bool avanza<K,D>(coleccion<K,D> &c);
 
     private: 
         //ATRIBUTOS
@@ -160,62 +161,76 @@ struct coleccion{
 //––––––––––––––––––––––––––––––––––
 
 
-template <typename D, typename K>
- void crear(coleccion<D, K> &c){
+template <typename K, typename D>
+ void crear(coleccion<K,D> &c){
   
   #warning IMPLEMENTAR CREAR
 }
+
+//Devuelve true si ene l abb existe un nodo con clave key
+template <typename K, typename D>
+bool existe<K, D>(typename coleccion<K, D>::nodo a, K key)
+{
+    if(a==nullptr)return false;
+    if(key<a.clave) return existe(a.izq,key);
+    if(key==a.clave) return true;
+    if(key>a.clave) return existe(a.der,key);
+
+}
+
 //devuelve true si y solo si existe un nodo con clave key
 //en la coleccion
-template <typename D, typename K>
-bool existe(const coleccion<D, K> &c, K key){
-    #warning IMPLEMENTAR EXISTE
+template <typename K, typename D>
+bool existe(const coleccion<K,D> &c, K key){
+
+    return existe(c.raiz,key);
+    
 }
 
 
-template <typename D, typename K>
-bool introducir(coleccion<D, K> &c, K key, D data, int rep){
+template <typename K, typename D>
+bool introducir(coleccion<K,D> &c, K key, D data, int rep){
 #warning IMPLEMENTAR INTRODUCIR
 }
 
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de reps se actualiza
-template <typename D, typename K>
-void agnadirRep(coleccion<D, K> &c, K key){
+template <typename K, typename D>
+void agnadirRep(coleccion<K,D> &c, K key){
 #warning IMPLEMENTAR AGNADIRREP
 }
 
 
-template <typename D, typename K>
-void quitarRep(coleccion<D, K> &c, K key){
+template <typename K, typename D>
+void quitarRep(coleccion<K,D> &c, K key){
 #warning IMPLEMENTAR QUITARREP
 }
 
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
 //y actualizando los valores de num y reps
-template <typename D, typename K>
-void eliminar(coleccion<D, K> &c, K key){
+template <typename K, typename D>
+void eliminar(coleccion<K,D> &c, K key){
 #warning IMPLEMENTAR ELIMINAR
 }
 
-template <typename D, typename K>
-bool obtenerDato(coleccion<D, K> &c, K key, D &data, int &rep)
+template <typename K, typename D>
+bool obtenerDato(coleccion<K,D> &c, K key, D &data, int &rep)
 {
 #warning IMPLEMENTAR OBTENERINFO
 }
 
 //devuelve el numero de nodos de la colección
-template <typename D, typename K>
-void numClaves(coleccion<D, K> &c, int &num){
+template <typename K, typename D>
+void numClaves(coleccion<K,D> &c, int &num){
 #warning IMPLEMENTAR NUMCLAVES
 }
 
 //Devuelve el valor de la suma, para todos los nodos
 //(clave, dato,rep) en la colección c, de la tercera componente, rep.
-template <typename D, typename K>
-void numCardinal(coleccion<D, K> &c, int &card){
+template <typename K, typename D>
+void numCardinal(coleccion<K,D> &c, int &card){
 #warning IMPLEMENTAR NUMCARDINAL
 }
 
@@ -225,28 +240,28 @@ void numCardinal(coleccion<D, K> &c, int &card){
 //Inicializa el iterador para recorrer los nodos de la colección c,
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
-template <typename D, typename K>
-void iniciarIterador(coleccion<D, K> &c){
+template <typename K, typename D>
+void iniciarIterador(coleccion<K,D> &c){
 #warning IMPLEMENTAR INICIARITERADOR
 }
 
 
-template <typename D, typename K>
-bool existeSiguiente(coleccion<D, K> &c){
+template <typename K, typename D>
+bool existeSiguiente(coleccion<K,D> &c){
 #warning IMPLEMENTAR EXISTESIGUIENTE
 }
 
 //Devuelve la clave, dato y  natural (número de repeticiones)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
-template <typename D, typename K>
-bool siguienteNodo(coleccion<D, K> &c, K &key, D &data, int &rep){
+template <typename K, typename D>
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep){
 #warning IMPLEMENTAR SIGUIENTECLAVE
 }
 
 
-template <typename D, typename K>
-bool avanza(coleccion<D, K> &c){
+template <typename K, typename D>
+bool avanza(coleccion<K,D> &c){
 #warning IMPLEMENTAR AVANZA
 }
 
