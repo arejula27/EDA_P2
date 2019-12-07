@@ -15,7 +15,8 @@ CC = g++        # para compilar
 #---------------------------------------------------------
 # vars
 EJEC = practica2
-DIR_LIBS=./libreria
+BUILD = ./build/
+DIR_LIBS=./lib
 LIB_BOOK = ${DIR_LIBS}/libro
 BOOK = ${LIB_BOOK}/libro
 LIB_COLEC =${DIR_LIBS}/coleccion
@@ -25,7 +26,7 @@ COLEC = ${LIB_COLEC}/coleccion
 CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -std=c++11    #opciones compilación
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
-	${CC} ${EJEC}.o ${BOOK}.o  -o ${EJEC} ${CPPFLAGS} 
+	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 
 #---------------------------------------------------------
 ${EJEC}.o: ${EJEC}.cpp
 	$(CC) ${EJEC}.cpp -c ${CPPFLAGS} 
