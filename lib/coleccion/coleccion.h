@@ -11,107 +11,97 @@
 #ifndef COLECCION_H
 #define COLECCION_H
 
-// Interfaz del TAD coleccion genérico. Pre-declaraciones:
-#include <iostream>
-const int MAX = 100; //Límite tamaño de la coleccion, en // esta implementación.
+// Interfaz del TAD colección genérico.
+// Pre-declaraciones:
+// El tipo K requerirá tener definida una función:
+// bool operator== (const K& t1, const K& t2)
+//bool operator < (const K& t1, const K& t2)
+//bool operator <= (const K& t1, const K& t2)
+//bool operator > (const K& t1, const K& t2)
+//bool operator >= (const K& t1, const K& t2)
 
-template <typename D,typename K>
+//Los valores del TAD representan 
+//colecciones de ternas(clave, dato, natural), en 
+//las que no se permiten claves repetidas, en las que
+// el natural representa el número de veces que está repetido
+// el par(clave, dato) en la colección, y que cuentan con operaciones
+// para gestionar las ternas además de un iterador para recorrerlas. }
+
+template <typename K,typename D>
 struct coleccion;
+
 
 //definir operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 
-//PRE:-
-//POS:devuelve una coleccion vacia
+#warning DOC CREAR
 template <typename D,typename K> 
 void crear(coleccion<D, K> &c);
-//PRE:-
-//POS: existe=Existe una clave == key en c
+
+
+//devuelve true si y solo si existe un nodo con clave key
+//en la coleccion
 template <typename D, typename K>
 bool existe(const coleccion<D,K> &c, K key);
 
-//PRE:-
-//POS: si(!existe(c,key)) se añade la nueva nodo a coleccion, 
-//  sino no se modifica
-// devuelve false si c esta comleta 
+#warning DOC INTRODUCIR
 template <typename D, typename K>
 bool introducir( coleccion<D,K> &c,K key,D data, int rep );
 
-//PRE: -
-//POS: si (existe(c,key) -> se sustituye el nodo (k,data,rep) por (k,data,rep+1)
-//      sino no se modifica
+//Si existe un nodo con clave key y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n+1, en caso contrario la colección
+//no cambia, el valor de reps se actualiza
 template <typename D, typename K>
 void agnadirRep(coleccion<D,K> &c,K key);
 
-//PRE: -
-//POS: si (existe(c,key) -> se sustituye el nodo (k,data,rep) por (k,data,rep-1)
-//      sino no se modifica
+#warning DOC QUITARREPS
 template <typename D, typename K>
 void quitarRep(coleccion<D,K> &c,K key);
 
-//PRE:-
-//POS: si (existe(c,key) -> devuelve una collecion igual a la recibida
-//      pero sin el nodo con clave key, en caso contrario devuelve la
-//      colección igual
+//Si en la colección existe un nodo con clave key entonces se 
+//devueva una coleccion igual eliminando el nodo con dicha clave
+//y actualizando los valores de num y reps
 template <typename D, typename K>
 void eliminar(coleccion<D,K> &c,K key);
 
-//PRE: key->existe(c,key);
-//POS: devuelve en data el dato con clave key
-// (en caso de no cumplisrse la PRE se devolvera false)
+#warning DOC QUITARREPS
 template <typename D, typename K>
-bool obtenerDato(coleccion<D,K> &c,K key,D &data);
+bool obtenerInfo(coleccion<D, K> &c, K key, D &data, int &rep);
 
-//PRE: key->existe(c,key);
-//POS: devuelve en rep el int con clave key
-// (en caso de no cumplisrse la PRE se devolvera false)
-template <typename D, typename K>
-bool obtenerNumero(coleccion<D,K> &c,K key,int &rep);
-
-//PRE: -
-//POS: devuelve el numero de nodos en la coleccion c
+//devuelve el numero de nodos de la colección
 template <typename D, typename K>
 void numClaves(coleccion<D, K> &c, int &num);
 
-//PRE: -
-//POS: card= sumatorio de todas las componentes  rep da las 
-//      nodos(key,data,rep)
+//Devuelve el valor de la suma, para todos los nodos 
+//(clave, dato,rep) en la colección c, de la tercera componente, rep.
 template <typename D, typename K>
 void numCardinal(coleccion<D, K> &c, int &card);
 
 //definir operaciones del iterdador de la colecion:
 //–––––––––––––––––––––––––––––––––––––––––––––––––
 
-//PRE: -
-//POS: se inicia un iterador
+//Inicializa el iterador para recorrer los nodos de la colección c, 
+//de forma que el siguiente nodo sea el primero a visitar 
+//(situación de no haber visitado ningun nodo).
 template <typename D, typename K>
 void iniciarIterador(coleccion<D, K> &c);
 
-//PRE: -
-//POS: devuelve true si quedan nodos por visitar de la coleccion c
+#warning DOC EXISTESIG
 template <typename D, typename K>
 bool existeSiguiente(coleccion<D, K> &c);
 
-//PRE: c.existeSiguiente(c)
-//POS: key = clave de la siguiente nodo a visitar de c
-template <typename D, typename K>
-bool siguienteClave(coleccion<D, K> &c, K &key);
+//Devuelve la clave, dato y  natural (número de repeticiones)
+// del siguiente nodo a visitar de c. 
+//Parcial: la operación no está definida si ya se ha visitado la última terna.
 
-//PRE: c.existeSiguiente(c)
-//POS: data = dato de la siguiente nodo a visitar de c
 template <typename D, typename K>
-bool siguienteDato(coleccion<D, K> &c,D &data);
+bool siguienteNodo(coleccion<D, K> &c, K &key, D &data, int &rep);
 
-//PRE: c.existeSiguiente(c)
-//POS: rep= natural de la siguiente nodo a visitar de c
-template <typename D, typename K>
-bool siguienteNumero(coleccion<D, K> &c, int &rep);
-
-//PRE: c.existeSiguiente(c)
-//POS: Prepara el iterador para visitar la siguiente nodo de la colección c
+#warning DOC AVANZA
 template <typename D, typename K>
 bool avanza(coleccion<D, K> &c);
 
+//fin de interfaz
 // Declaración:
 //–––––––––––––
 
@@ -124,31 +114,44 @@ struct coleccion{
     friend void agnadirRep<D,K>(coleccion<D, K> &c, K key);
     friend void quitarRep<D, K>(coleccion<D, K> &c, K key);
     friend void eliminar<D,K>(coleccion<D, K> &c, K key);
-    friend bool obtenerDato<D, K>(coleccion<D, K> &c, K key, D &data);
-    friend bool obtenerNumero<D, K>(coleccion<D, K> &c, K key, int &rep);
+    friend bool obtenerInfo<D, K>(coleccion<D, K> &c, K key, D &data, int &rep);
     friend void numClaves<D, K>(coleccion<D, K> &c, int &num);
     friend void numCardinal<D, K>(coleccion<D, K> &c, int &card);
-
     friend void iniciarIterador<D, K>(coleccion<D, K> &c);
     friend bool existeSiguiente<D, K>(coleccion<D, K> &c);
-    friend bool siguienteClave<D, K>(coleccion<D, K> &c, K &key);
-    friend bool siguienteDato<D, K>(coleccion<D, K> &c, D &data);
-    friend bool siguienteNumero<D, K>(coleccion<D, K> &c, int &rep);
+    friend bool siguienteNodo<D, K>(coleccion<D, K> &c, K &key, D &data, int &rep);
     friend bool avanza<D, K>(coleccion<D, K> &c);
 
-    private: //declaración de la representación innodo del tipo:
-        
+    private: 
+        //ATRIBUTOS
+        //Cada coleccion guarda la dirección del 
+        //primer elemento (raiz) del arból binario,
+        //además de el número de nodos (num), y el numero de 
+        //repeticiones totales, esto sera la suma de las 
+        //repetciones de cada nodo
+        //contará con un puntero auxiliar de uso EXCLUSIVO 
+        //del iterador
 
+        //La colección se estructurará a modo de ABB
+
+        //Se defie los nodos propios de la coleccion
         struct nodo
         {
+            //ATRIBUTOS
+            //Cada nodo cuenta con un dato y clave (tipo genérico)
+            //también se almacena cuantas veces se repite cada nodo
+            //además contará con dos punteros correpondientes a 
+            //su hijo derecho y su hijo izquierdo, 
             D dato;
             K clave;
-            int reps;
+            int rep;
             nodo *izq;
             nodo *der;
         };
-         nodo *raiz;
-         nodo *index;
+         nodo *raiz;//primer elemento
+         int reps;//suma de repeteciones de todos los nodos
+         int num;//numero de nodos
+         nodo *index;//puntero auxiliar para el iterador
         
 
         
@@ -158,26 +161,18 @@ struct coleccion{
 //––––––––––––––––––––––––––––––––––
 
 
-//PRE:-
-//POS:devuelve una coleccion vacia
-
 template <typename D, typename K>
  void crear(coleccion<D, K> &c){
   
   #warning IMPLEMENTAR CREAR
 }
 
-//PRE:-
-//POS: existe=Existe una clave == key en c
 template <typename D, typename K>
 bool existe(const coleccion<D, K> &c, K key){
     #warning IMPLEMENTAR EXISTE
 }
 
-//PRE:-
-//POS: si(!existe(c,key)) se añade la nueva nodo a coleccion,
-//  sino no se modifica
-// devuelve false si c esta completa
+
 template <typename D, typename K>
 bool introducir(coleccion<D, K> &c, K key, D data, int rep){
 #warning IMPLEMENTAR INTRODUCIR
@@ -186,57 +181,37 @@ bool introducir(coleccion<D, K> &c, K key, D data, int rep){
 
 
 
-//PRE: -
-//POS: si (existe(c,key) -> se sustituye el nodo (k,data,rep) por (k,data,rep+1)
-//      sino no se modifica
+
 template <typename D, typename K>
 void agnadirRep(coleccion<D, K> &c, K key){
 #warning IMPLEMENTAR AGNADIRREP
 }
 
-//PRE: -
-//POS: si (existe(c,key) -> se sustituye el nodo (k,data,rep) por (k,data,rep-1)
-//      sino no se modifica
+
 template <typename D, typename K>
 void quitarRep(coleccion<D, K> &c, K key){
 #warning IMPLEMENTAR QUITARREP
 }
 
-//PRE:-
-//POS: si (existe(c,key) -> devuelve una collecion igual a la recibida
-//      pero sin el nodo con clave key, en caso contrario devuelve la
-//      colección igual
+
 template <typename D, typename K>
 void eliminar(coleccion<D, K> &c, K key){
 #warning IMPLEMENTAR ELIMINAR
 }
 
-//PRE: key->existe(c,key);
-//POS: devuelve en data el dato con clave key
-// (en caso de no cumplisrse la PRE se devolvera false)
 template <typename D, typename K>
-bool obtenerDato(coleccion<D, K> &c, K key, D &data){
-#warning IMPLEMENTAR OBTENERDATO
+bool obtenerDato(coleccion<D, K> &c, K key, D &data, int &rep)
+{
+#warning IMPLEMENTAR OBTENERINFO
 }
 
-//PRE: key->existe(c,key);
-//POS: devuelve en rep el int con clave key
-// (en caso de no cumplisrse la PRE se devolvera false)
-template <typename D, typename K>
-bool obtenerNumero(coleccion<D, K> &c, K key, int &rep){
-#warning IMPLEMENTAR OBTENERNUMERO
-}
 
-//PRE: -
-//POS: devuelve el numero de nodos en la coleccion c
 template <typename D, typename K>
 void numClaves(coleccion<D, K> &c, int &num){
 #warning IMPLEMENTAR NUMCLAVES
 }
 
-//PRE: -
-//POS: card= sumatorio de todas las componentes  rep de las
-//      nodos(key,data,rep)
+
 template <typename D, typename K>
 void numCardinal(coleccion<D, K> &c, int &card){
 #warning IMPLEMENTAR NUMCARDINAL
@@ -245,43 +220,33 @@ void numCardinal(coleccion<D, K> &c, int &card){
 //implementar operaciones del iterdador de la colecion:
 //–––––––––––––––––––––––––––––––––––––––––––––––––
 
-//PRE: -
-//POS: se inicia un iterador
+
 template <typename D, typename K>
 void iniciarIterador(coleccion<D, K> &c){
 #warning IMPLEMENTAR INICIARITERADOR
 }
 
-//PRE: -
-//POS: devuelve true si quedan nodos por visitar de la coleccion c
+
 template <typename D, typename K>
 bool existeSiguiente(coleccion<D, K> &c){
 #warning IMPLEMENTAR EXISTESIGUIENTE
 }
 
-//PRE: c.existeSiguiente(c)
-//POS: key = clave de la siguiente nodo a visitar de la coleccion c, devuelve false si no existe siguiente
 template <typename D, typename K>
 bool siguienteClave(coleccion<D, K> &c, K &key){
 #warning IMPLEMENTAR SIGUIENTECLAVE
 }
 
-//PRE: c.existeSiguiente(c)
-//POS: data = dato de la siguiente nodo a visitar de la coleccion c
 template <typename D, typename K>
 bool siguienteDato(coleccion<D, K> &c, D &data){
 #warning IMPLEMENTAR SIGUIENTEDATO
 }
 
-//PRE: c.existeSiguiente(c)
-//POS: rep= natural de la siguiente nodo a visitar de la coleccion c
 template <typename D, typename K>
 bool siguienteNumero(coleccion<D, K> &c, int &rep){
 #warning IMPLEMENTAR CSIGUIENTENUMERO
 }
 
-//PRE: c.existeSiguiente(c)
-//POS: Prepara el iterador para visitar la siguiente nodo de la colección c
 template <typename D, typename K>
 bool avanza(coleccion<D, K> &c){
 #warning IMPLEMENTAR AVANZA
