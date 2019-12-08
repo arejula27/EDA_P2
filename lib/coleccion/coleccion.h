@@ -11,6 +11,8 @@
 #ifndef COLECCION_H
 #define COLECCION_H
 
+#include "pila.h"
+
 // Interfaz del TAD colección genérico.
 // Pre-declaraciones:
 // El tipo K requerirá tener definida una función:
@@ -46,7 +48,7 @@ bool existe(const coleccion<K,D> &c, K key);
 
 #warning DOC INTRODUCIR
 template <typename K, typename D>
-bool introducir( coleccion<K,D> &c,K key,D data, int rep );
+bool introducir( coleccion<K,D> &c,K key,D data, int rp );
 
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
@@ -66,7 +68,7 @@ void eliminar(coleccion<K,D> &c,K key);
 
 #warning DOC QUITARREPS
 template <typename K, typename D>
-bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rep);
+bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp);
 
 //devuelve el numero de nodos de la colección
 template <typename K, typename D>
@@ -94,7 +96,7 @@ bool existeSiguiente(coleccion<K,D> &c);
 // del siguiente nodo a visitar de c. 
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep);
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
 
 #warning DOC AVANZA
 template <typename K, typename D>
@@ -110,16 +112,16 @@ struct coleccion{
     friend void crear<K,D>(coleccion<K,D> &c);
     friend bool existe<K,D>(typename coleccion<K,D>::terna *paux, K key);
     friend bool existe<K,D>(const coleccion<K,D> &c, K key);
-    friend bool introducir<K,D>(coleccion<K,D> &c, K key, D data, int rep);
+    friend bool introducir<K,D>(coleccion<K,D> &c, K key, D data, int rp);
     friend void agnadirRep<K,D>(coleccion<K,D> &c, K key);
     friend void quitarRep<K,D>(coleccion<K,D> &c, K key);
     friend void eliminar<K,D>(coleccion<K,D> &c, K key);
-    friend bool obtenerInfo<K,D>(coleccion<K,D> &c, K key, D &data, int &rep);
+    friend bool obtenerInfo<K,D>(coleccion<K,D> &c, K key, D &data, int &rp);
     friend void numClaves<K,D>(coleccion<K,D> &c, int &num);
     friend void numCardinal<K,D>(coleccion<K,D> &c, int &card);
     friend void iniciarIterador<K,D>(coleccion<K,D> &c);
     friend bool existeSiguiente<K,D>(coleccion<K,D> &c);
-    friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rep);
+    friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
     friend bool avanza<K,D>(coleccion<K,D> &c);
 
     private: 
@@ -148,14 +150,14 @@ struct coleccion{
             nodo *izq;
             nodo *der;
         };
-         nodo *raiz;//primer elemento
-         int reps;//suma de repeteciones de todos los nodos
-         int num;//numero de nodos
-         nodo *index;//puntero auxiliar para el iterador
-         int keyMax;//guarda la clave con el valor máximo de la colección
-        
-
-        
+        nodo *raiz;//primer elemento
+        int reps;//suma de repeteciones de todos los nodos
+        int num;//numero de nodos
+        nodo *index;//puntero auxiliar para el iterador estado actual
+        nodo *index; //puntero auxiliar para el iterador siguiente 
+        int keyMax;//guarda la clave con el valor máximo de la colección
+        bool seen; //util para el iterador, marca si ya has pasado por el o no
+        pila pl < typename coleccion<K, D>::nodo *>;
 };
 
 //implementar operaciones de colecion:
@@ -191,8 +193,10 @@ bool existe(const coleccion<K,D> &c, K key)
 
 
 template <typename K, typename D>
-bool introducir(coleccion<K,D> &c, K key, D data, int rep)
+bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
+
+    //recuerda inicializar las variables del nodo, ej: seen = false
 #warning IMPLEMENTAR INTRODUCIR
 }
 
@@ -266,7 +270,7 @@ void eliminar(coleccion<K,D> &c, K key)
 }
 
 template <typename K, typename D>
-bool obtenerDato(coleccion<K,D> &c, K key, D &data, int &rep)
+bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
 #warning IMPLEMENTAR OBTENERINFO
 }
@@ -297,7 +301,12 @@ typename coleccion<K, D>::nodo * iniciarIterador(typename coleccion<K, D>::nodo 
     if(a!=nullptr){
 
         if(a->izq ==nullptr) return a;
-        else iniciarIterador(a->izq)
+        else 
+        {
+            push(pl,a);
+            return iniciarIterador(a->izq);
+
+        }
     }
 
     
@@ -314,6 +323,9 @@ void iniciarIterador(coleccion<K,D> &c)
 }
 
 
+
+
+
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c)
 {
@@ -321,13 +333,52 @@ bool existeSiguiente(coleccion<K,D> &c)
 //este tiene que ser o(1) jeje
 }
 
+template <typename K, typename D>
+bool siguienteNodo(typename coleccion<K, D>::nodo *a, typename coleccion<K, D>::nodo *res)
+{
+    //si existe izquierdo y no lo he visitado me toca
+    if (a->izq != null && !a->izq->seen){
+        push(pl,a);
+        return siguienteNodo(a->izq,res);
+    }
+    else if(!a->seen){
+        a->seen = true;
+        res = a;
+        return true;
+    }
+    else if (a->der != null && !a->der->seen){
+        return siguienteNodo(a->der,res);
+    }
+    else
+    {
+        
+        //abb a ha sido visitado entero, siguiente es su progenitor
+        typename coleccion<K, D>::nodo *aux ;
+
+        if(!top(pl, aux))return false;//si no hay progenitor
+        else
+        {
+            pop(pl);
+            res = aux
+            //volver a poner a false los valores de los hijos
+            a->izq->seen = false;
+            a->der->seen = false;
+            return true;
+        }
+    }
+}
+
 //Devuelve la clave, dato y  natural (número de repeticiones)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep)
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 {
-#warning IMPLEMENTAR SIGUIENTECLAVE
+    typename coleccion<K, D>::nodo *aux;
+    bool val= siguienteNodo(c.index, c.sig);
+    data = c.sig->dato;
+    rp = c.sig->rep;
+
 }
 
 
