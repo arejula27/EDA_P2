@@ -15,24 +15,30 @@ CC = g++        # para compilar
 #---------------------------------------------------------
 # vars
 EJEC = practica2
-TESTCOL = coltest
-TESTPILA = pilatest
-LIB_TEST = test/
+
+LIB_TEST = ./test/
 BUILD = ./build/
 DIR_LIBS=./lib
+
 LIB_BOOK = ${DIR_LIBS}/libro
 BOOK = ${LIB_BOOK}/libro
+
 LIB_COLEC =${DIR_LIBS}/coleccion
 COLEC = ${LIB_COLEC}/coleccion
-LIB_PILA = lib/pila
+
+LIB_PILA = ${DIR_LIBS}/pila
+PILATEST = ${LIB_TEST}pilaMain
 
 #---------------------------------------------------------
 # para compilación y enlazado ("linkado")
 CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11    #opciones compilación
-TESTFLAGS = -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11 -stdlib=libc++ -lgtest -lpthread
+TESTFLAGS = -I.  -I${LIB_PILA} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 
+#---------------------------------------------------------
+pilatest: ${PILATEST}.cpp
+	${CC}  ${PILATEST}.cpp ${TESTFLAGS}  -o ${BUILD}pilaTest
 #---------------------------------------------------------
 ${EJEC}.o: ${EJEC}.cpp
 	$(CC) ${EJEC}.cpp -c ${CPPFLAGS} 

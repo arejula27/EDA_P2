@@ -51,7 +51,7 @@ TEST(PilaVacia, desapilar)
     EXPECT_TRUE(empty(pl));
     //compruebo que no va a petar xd
     EXPECT_NO_FATAL_FAILURE (pop(pl));
-    EXPECT_THAT("Hello", "Hello");
+   
     
 }
 TEST(PilaVacia, situacionVacia)
