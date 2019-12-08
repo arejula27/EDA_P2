@@ -342,7 +342,6 @@ bool siguienteNodo(typename coleccion<K, D>::nodo *a, typename coleccion<K, D>::
         return siguienteNodo(a->izq,res);
     }
     else if(!a->seen){
-        a->seen = true;
         res = a;
         return true;
     }
