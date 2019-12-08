@@ -24,7 +24,7 @@ bool empty(pila<D> &p);
 
 //Devuelve la pila resultante de añadir e a p
 template <typename D>
-void push(pila<D> &p);
+void push(pila<D> &p, D data);
 
 //DEvuelve la pila resultante al eliminar el último elemento
 //que fue apilado, si p es es vacia la devuelve igual
@@ -34,7 +34,7 @@ void pop(pila<D> &p);
 //Devuelve el último elemento apilado
 //Parcial, operacion no definida para pila vacia
 template <typename D>
-bool top(pila<D> &p);
+bool top(pila<D> &p,D &data);
 
 //Devuelve  el número de elementos de la pila 
 template <typename D>
@@ -48,9 +48,9 @@ struct pila{
 
     friend void crear<D>(pila<D> &p);
     friend bool empty<D>(pila<D> &p);
-    friend void push<D>(pila<D> &p);
+    friend void push<D>(pila<D> &p, D data);
     friend void pop<D>(pila<D> &p);
-    friend bool top<D>(pila<D> &p);
+    friend bool top<D>(pila<D> &p, D &data);
     friend int size<D>(pila<D> &p);
 
 private:
@@ -65,15 +65,15 @@ private:
         };
 
         int len;
-        nodo * base;
+        nodo * top;
 };
 
 //Devuelve una pila vacia sin elementos
 template <typename D>
 void crear(pila<D> &p)
 {
-    p.base = new typename pila<D>::nodo;
-    p.base->down = nullptr;
+    p.top = new typename pila<D>::nodo;
+    p.top->down = nullptr;
     p.len =0;
 }
 
@@ -86,9 +86,13 @@ bool empty(pila<D> &p)
 
 //Devuelve la pila resultante de añadir e a p
 template <typename D>
-void push(pila<D> &p)
-{
-
+void push(pila<D> &p, D data)
+{   
+    typename pila<D>::nodo *aux = p.top;
+    p.top = new typename pila<D>::nodo;
+    p.top->down = aux;
+    p.len++;
+    p.top->dato = data;
 }
 
 //DEvuelve la pila resultante al eliminar el último elemento
@@ -96,15 +100,29 @@ void push(pila<D> &p)
 template <typename D>
 void pop(pila<D> &p)
 {
-
+    if(p.len>0)
+    {
+        typename pila<D>::nodo *aux = p.top;
+        p.top = p.top->down;
+        delete aux;
+        p.len--;
+    }
+   
 }
 
 //Devuelve el último elemento apilado
 //Parcial, operacion no definida para pila vacia
 template <typename D>
-bool top(pila<D> &p)
+bool top(pila<D> &p,D &data)
 {
-
+    if (p.len>0)
+    {
+        data = p.top->dato;
+        return true;
+    }
+    return false;
+    
+    
 }
 
 //Devuelve  el número de elementos de la pila

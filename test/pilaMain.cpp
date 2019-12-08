@@ -28,38 +28,112 @@
 
 //creo el dato de tipo pila
 pila<int> pl;
+int var;
 
-int fallo(){
-    int *a;
-    a =nullptr;
-    return *a;
-}
+
 //Creo un test con titulo,subtitulo
-
-
 TEST(CreacionPila, crear)
 {
-    
-
     EXPECT_EQ(0, size(pl));
-    
-   
 }
-TEST(PilaVacia, desapilar)
+
+TEST(PilaVacia, operaciones)
 {
     //Comprueba si empty devuelve true
     EXPECT_TRUE(empty(pl));
     //compruebo que no va a petar xd
     EXPECT_NO_FATAL_FAILURE (pop(pl));
-   
-    
+    EXPECT_FALSE(top(pl,var));
 }
-TEST(PilaVacia, situacionVacia)
+
+TEST(Pila, apilar)
 {
-    //compruebo que hay 0 elementos
+    push(pl,1);
+    EXPECT_EQ(1,size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE( top(pl,var));
+    EXPECT_EQ(1,var);
+
+    push(pl, 4);
+    EXPECT_EQ(2, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(4, var);
+
+    push(pl, -9);
+    EXPECT_EQ(3, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(-9, var);
+
+    //comprueba devuelve true
+    EXPECT_FALSE(empty(pl));
+}
+
+TEST(Pila,desapilar){
+
+    pop(pl);
+    EXPECT_EQ(2, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(4, var);
+
+    pop(pl);
+    EXPECT_EQ(1, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(1, var);
+
+    pop(pl);
     EXPECT_EQ(0, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_FALSE(top(pl, var));
     //comprueba devuelve true
     EXPECT_TRUE(empty(pl));
+}
+TEST(Pila, mezcla){
+    push(pl, 1);
+    EXPECT_EQ(1, size(pl));
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(1, var);
+
+    pop(pl);
+    EXPECT_EQ(0, size(pl));
+    EXPECT_FALSE(top(pl, var));
+    EXPECT_EQ(1, var);
+
+    EXPECT_TRUE(empty(pl));
+
+    EXPECT_NO_FATAL_FAILURE(pop(pl));
+    EXPECT_EQ(0, size(pl));
+    EXPECT_FALSE(top(pl, var));
+
+    push(pl, 4);
+    EXPECT_EQ(1, size(pl));
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(4, var);
+    EXPECT_FALSE(empty(pl));
+
+    push(pl, -9);
+    EXPECT_EQ(2, size(pl));
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(-9, var);
+    EXPECT_FALSE(empty(pl));
+
+    pop(pl);
+    EXPECT_EQ(1, size(pl));
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(4, var);
+
+    pop(pl);
+    EXPECT_EQ(0, size(pl));
+    EXPECT_FALSE(top(pl, var));
+   
+
+    EXPECT_NO_FATAL_FAILURE(pop(pl));
+    EXPECT_EQ(0, size(pl));
+    EXPECT_FALSE(top(pl, var));
+   
 }
 
 
