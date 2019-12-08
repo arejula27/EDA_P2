@@ -182,7 +182,8 @@ bool existe(typename coleccion<K, D>::nodo *a, K key)
 //devuelve true si y solo si existe un nodo con clave key
 //en la coleccion
 template <typename K, typename D>
-bool existe(const coleccion<K,D> &c, K key){
+bool existe(const coleccion<K,D> &c, K key)
+{
 
     return existe(&c.raiz,key);
     
@@ -190,7 +191,8 @@ bool existe(const coleccion<K,D> &c, K key){
 
 
 template <typename K, typename D>
-bool introducir(coleccion<K,D> &c, K key, D data, int rep){
+bool introducir(coleccion<K,D> &c, K key, D data, int rep)
+{
 #warning IMPLEMENTAR INTRODUCIR
 }
 
@@ -216,7 +218,8 @@ bool agnadirRep(typename coleccion<K, D>::nodo *a, K key)
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de reps se actualiza
 template <typename K, typename D>
-void agnadirRep(coleccion<K,D> &c, K key){
+void agnadirRep(coleccion<K,D> &c, K key)
+{
     if(agnadirRep(&c.raiz,key)) c.reps++;
 }
 
@@ -246,12 +249,13 @@ int eliminar(typename coleccion<K, D>::nodo *a, K key)
     if (key > a->clave)
         return existe(a.der, key);
 
-
+}
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
 //y actualizando los valores de num y reps
 template <typename K, typename D>
-void eliminar(coleccion<K,D> &c, K key){
+void eliminar(coleccion<K,D> &c, K key)
+{
     int eli;
     if(eli = eliminar(&c.raiz,key)>0)
     {
@@ -269,14 +273,16 @@ bool obtenerDato(coleccion<K,D> &c, K key, D &data, int &rep)
 
 //devuelve el numero de nodos de la colección
 template <typename K, typename D>
-void numClaves(coleccion<K,D> &c, int &num){
+void numClaves(coleccion<K,D> &c, int &num)
+{
  num = c.num;
 }
 
 //Devuelve el valor de la suma, para todos los nodos
 //(clave, dato,rep) en la colección c, de la tercera componente, rep.
 template <typename K, typename D>
-void numCardinal(coleccion<K,D> &c, int &card){
+void numCardinal(coleccion<K,D> &c, int &card)
+{
 #warning IMPLEMENTAR NUMCARDINAL
 }
 
@@ -285,7 +291,8 @@ void numCardinal(coleccion<K,D> &c, int &card){
 
 
 template <typename K, typename D>
-typename coleccion<K, D>::nodo * iniciarIterador(typename coleccion<K, D>::nodo *a){
+typename coleccion<K, D>::nodo * iniciarIterador(typename coleccion<K, D>::nodo *a)
+{
 
     if(a!=nullptr){
 
@@ -300,14 +307,16 @@ typename coleccion<K, D>::nodo * iniciarIterador(typename coleccion<K, D>::nodo 
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
 template <typename K, typename D>
-void iniciarIterador(coleccion<K,D> &c){
+void iniciarIterador(coleccion<K,D> &c)
+{
     c.index = iniciarIterador(&c.raiz);
 
 }
 
 
 template <typename K, typename D>
-bool existeSiguiente(coleccion<K,D> &c){
+bool existeSiguiente(coleccion<K,D> &c)
+{
 #warning IMPLEMENTAR EXISTESIGUIENTE
 //este tiene que ser o(1) jeje
 }
@@ -316,13 +325,15 @@ bool existeSiguiente(coleccion<K,D> &c){
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep){
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rep)
+{
 #warning IMPLEMENTAR SIGUIENTECLAVE
 }
 
 
 template <typename K, typename D>
-bool avanza(coleccion<K,D> &c){
+bool avanza(coleccion<K,D> &c)
+{
 #warning IMPLEMENTAR AVANZA
 }
 
