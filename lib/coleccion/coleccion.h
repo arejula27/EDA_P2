@@ -376,6 +376,8 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
     bool val= siguienteNodo(c.index, c.sig);
     data = c.index->dato;
     rp = c.index->rep;
+    if(!val)c.raiz->seen = false;
+    return val;
 
 }
 
