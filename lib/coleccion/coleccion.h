@@ -154,7 +154,6 @@ struct coleccion{
         int reps;//suma de repeteciones de todos los nodos
         int num;//numero de nodos
         nodo *index;//puntero auxiliar para el iterador estado actual
-        nodo *index; //puntero auxiliar para el iterador siguiente 
         int keyMax;//guarda la clave con el valor máximo de la colección
         bool seen; //util para el iterador, marca si ya has pasado por el o no
         pila pl < typename coleccion<K, D>::nodo *>;
@@ -375,8 +374,8 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 {
     typename coleccion<K, D>::nodo *aux;
     bool val= siguienteNodo(c.index, c.sig);
-    data = c.sig->dato;
-    rp = c.sig->rep;
+    data = c.index->dato;
+    rp = c.index->rep;
 
 }
 
