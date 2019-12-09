@@ -17,14 +17,14 @@
 // Pre-declaraciones:
 // El tipo K requerirá tener definida una función:
 // bool operator== (const K& t1, const K& t2)
-//bool operator < (const K& t1, const K& t2)
-//bool operator <= (const K& t1, const K& t2)
-//bool operator > (const K& t1, const K& t2)
-//bool operator >= (const K& t1, const K& t2)
+// bool operator < (const K& t1, const K& t2)
+// bool operator <= (const K& t1, const K& t2)
+// bool operator > (const K& t1, const K& t2)
+// bool operator >= (const K& t1, const K& t2)
 
-//Los valores del TAD representan 
-//colecciones de ternas(clave, dato, natural), en 
-//las que no se permiten claves repetidas, en las que
+// Los valores del TAD representan 
+// colecciones de ternas(clave, dato, natural), en 
+// las que no se permiten claves repetidas, en las que
 // el natural representa el número de veces que está repetido
 // el par(clave, dato) en la colección, y que cuentan con operaciones
 // para gestionar las ternas además de un iterador para recorrerlas. }
