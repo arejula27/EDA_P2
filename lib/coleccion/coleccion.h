@@ -246,7 +246,7 @@ void introducir(coleccion<K,D> &c, K key, D data, int rp)
         c.raiz->dato = data;
         c.raiz->clave = key;
         c.raiz->rep = rp;
-        c.raiz->seen = false;        
+      
    }
    else if(introducir(&c.raiz,key,data,rp)){
        c.num++;
@@ -397,7 +397,7 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
 template <typename K, typename D>
-void iniciarIterador(coleccion<K,D> &c)
+void iniciarIterador(const coleccion<K,D> &c)
 {   
     delete c.index;
     typename coleccion<K, D>::nodo *aux = c.raiz;
@@ -411,33 +411,46 @@ void iniciarIterador(coleccion<K,D> &c)
 
 
 
-
 //Devuelve true si el puntero del indice no es nulo
 template <typename K, typename D>
-bool existeSiguiente(coleccion<K,D> &c)
+bool existeSiguiente(const coleccion<K,D> &c)
 {
-    if(c.index->key < c.keyMax) return true;
-    else return false;
+    return !empty(c.pl); //Hay siguiente dato en la pila
 }
-
-template <typename K, typename D>
-bool siguienteNodo(typename coleccion<K, D>::nodo *a, typename coleccion<K, D>::nodo *res);
 
 //Devuelve la clave, dato y  natural (número de repeticiones)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
+bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
 {
-    
+    typename coleccion<K, D>::nodo *aux;
+    if(existeSiguiente(c)){
+        top(c.pl, aux);
+        key = aux->clave;
+        data = aux->dato;
+        rp = aux->rep;
+        return true;
+    }
+    return false;
 
 }
 
 
 template <typename K, typename D>
-bool avanza(coleccion<K,D> &c)
+bool avanza(const coleccion<K,D> &c)
 {
-#warning IMPLEMENTAR AVANZA
+    if(!empty(c.pl)){
+        typename coleccion<K, D>::nodo *aux;
+        pop(&c.pl);
+        aux = aux->der;
+        while(aux != nullptr){
+                push(&c.pl, aux);
+                aux = aux->izd;
+        }
+        return true;
+    }
+    else return false;
 }
 
 #endif // !COLECCION_H
