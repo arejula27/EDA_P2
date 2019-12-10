@@ -36,7 +36,7 @@ struct coleccion;
 //definir operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 
-#warning DOC CREAR
+//Crea una colección c vacía (sin nodos)
 template <typename K,typename D> 
 void crear(coleccion<K,D> &c);
 
@@ -46,7 +46,9 @@ void crear(coleccion<K,D> &c);
 template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key);
 
-#warning DOC INTRODUCIR
+//Si no existe un nodo con clave key actualiza la colección 
+//resultado de añadir en c una   terna (k,data,rp). Si el nodo 
+//ya existe la coleccion queda igual 
 template <typename K, typename D>
 void introducir( coleccion<K,D> &c,K key,D data, int rp );
 
@@ -56,7 +58,9 @@ void introducir( coleccion<K,D> &c,K key,D data, int rp );
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c,K key);
 
-#warning DOC QUITARREPS
+//Si existe un nodo con clave key y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n-1 (si reps pasa a valer 0 la elimina),
+//en caso contrario la colección no cambia, el valor de reps se actualiza
 template <typename K, typename D>
 void quitarRep(coleccion<K,D> &c,K key);
 
@@ -66,7 +70,8 @@ void quitarRep(coleccion<K,D> &c,K key);
 template <typename K, typename D>
 void eliminar(coleccion<K,D> &c,K key);
 
-#warning DOC QUITARREPS
+//Si en la colección existe un nodo con clave key entonces 
+// data es igual a los datos del nodo y rp a las reps del mismo 
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp);
 
@@ -88,7 +93,7 @@ void numCardinal(coleccion<K,D> &c, int &card);
 template <typename K, typename D>
 void iniciarIterador(coleccion<K,D> &c);
 
-#warning DOC EXISTESIG
+//Devuelve verdad si y sólo si queda alguna terna por visitar con el iterador de la colección c
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c);
 
@@ -98,7 +103,9 @@ bool existeSiguiente(coleccion<K,D> &c);
 template <typename K, typename D>
 bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
 
-#warning DOC AVANZA
+
+//Prepara el iterador para visitar la siguiente terna de la colección c 
+//Parcial: la operación no está definida si ya se ha visitado la última terna
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c);
 
@@ -122,7 +129,19 @@ struct coleccion{
     friend void iniciarIterador<K,D>(coleccion<K,D> &c);
     friend bool existeSiguiente<K,D>(coleccion<K,D> &c);
     friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
-    friend bool avanza<K,D>(coleccion<K,D> &c, pila < typename coleccion<K, D>::nodo *> pl);
+    friend bool avanza(const coleccion<K,D> &c);
+
+    //Funciones auxiliares
+    //––––––––––––––––––––––––––––––––––––––––––
+    //NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
+    //––––––––––––––––––––––––––––––––––––––––––
+    
+    friend bool existe(typename coleccion<K, D>::nodo *a, K key)
+    friend bool introducir(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
+    friend bool agnadirRep(typename coleccion<K, D>::nodo *a, K key);
+    friend bool quitarRep(typename coleccion<K, D>::nodo *a, K key);
+    friend int eliminar(typename coleccion<K, D>::nodo *a, K key);
+    friend bool obtenerInfo(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
 
     private: 
         //ATRIBUTOS
@@ -162,7 +181,7 @@ struct coleccion{
 //implementar operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 
-
+//Crea una colección c vacía (sin nodos)
 template <typename K, typename D>
  void crear(coleccion<K,D> &c){
 
@@ -196,7 +215,7 @@ bool existe(const coleccion<K,D> &c, K key)
     
 }
 
-//Devuelve true si ha introducido el nodo
+//Devuelve true si y solo si ha introducido el nodo en la coleccion
 template <typename K, typename D>
 bool introducir(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
     if(key < a->clave){
@@ -232,9 +251,12 @@ bool introducir(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
 
 }
 
-//Si el libro ya existe devuelve false
-//Devuelve true si c es la misma colección con el resultado de introducir un libro
 
+
+
+//Si no existe un nodo con clave key actualiza la colección 
+//resultado de añadir en c una   terna (k,data,rp). Si el nodo 
+//ya existe la coleccion queda igual 
 template <typename K, typename D>
 void introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
@@ -267,7 +289,7 @@ bool agnadirRep(typename coleccion<K, D>::nodo *a, K key)
     if(key <  a->clave) return existe(a.izq,key);
     if(key == a->clave){
         a->rep++;
-        return true
+        return true;
     } 
     if(key > a->clave) return existe(a.der,key);
     
@@ -286,8 +308,8 @@ void agnadirRep(coleccion<K,D> &c, K key)
 
 
 //busca en el abb a si se encuentra el nodo con clave key, en dicho caso
-//dismiuye el valor de variable entera rep y devuelve true,
-//false  en caso contario
+//dismiuye el valor de variable entera rep (si la actualiza a cero la elimina)
+//y devuelve true. False  en caso contario
 template <typename K, typename D>
 bool quitarRep(typename coleccion<K, D>::nodo *a, K key)
 {
@@ -295,21 +317,30 @@ bool quitarRep(typename coleccion<K, D>::nodo *a, K key)
     if(key <  a->clave) return quitarRep(a.izq,key);
     if(key == a->clave){
         a->rep--;
-        return true
+        if(a->rep == 0){
+            delete a;
+            a=nullptr;
+            c.num-- ;
+        }
+        return true;
     } 
     if(key > a->clave) return quitarRep(a.der,key);
     
 
 }
 
-
+//Si existe un nodo con clave key y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n-1 (si reps pasa a valer 0 la elimina),
+//en caso contrario la colección no cambia, el valor de reps se actualiza
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
-    if(quitarRep(&c.raiz,key)) c.reps++;
+    if(quitarRep(&c.raiz,key)) c.reps--;
+    
 }
 
-
+//Devuelve el número de repeteticiones del nodo con clave key
+// y lo elimina de la colección, devuelve cero si el puntero es nulo
 template <typename K, typename D>
 int eliminar(typename coleccion<K, D>::nodo *a, K key)
 {
@@ -332,7 +363,7 @@ int eliminar(typename coleccion<K, D>::nodo *a, K key)
     if (key > a->clave){
         return eliminar(a.der, key);
     }
-
+    #warning REORGANIZAR_EL_ABB
 }
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
@@ -349,8 +380,8 @@ void eliminar(coleccion<K,D> &c, K key)
 
 }
 
-//busca en el abb a si se encuentra el nodo con clave key, en dicho caso
-//data=dato, rp=rep y devuelve true,
+//Busca en el abb a si se encuentra el nodo con clave key, en dicho caso
+//data = datos del nodo, rp = reps del nodo y devuelve true,
 //false  en caso contario
 template <typename K, typename D>
 bool obtenerInfo(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
@@ -368,6 +399,9 @@ bool obtenerInfo(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 
 }
 
+
+//Si en la colección existe un nodo con clave key entonces 
+// data es igual a los datos del nodo y rp a las reps del mismo 
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
@@ -437,6 +471,8 @@ bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
 }
 
 
+//Prepara el iterador para visitar la siguiente terna de la colección c 
+//Parcial: la operación no está definida si ya se ha visitado la última terna
 template <typename K, typename D>
 bool avanza(const coleccion<K,D> &c)
 {
