@@ -33,13 +33,15 @@ template <typename K,typename D>
 struct coleccion;
 
 
+//template <typename K, typename D>
+//typename coleccion<K, D>::nodo;
+
 //definir operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 
 //Crea una colección c vacía (sin nodos)
-template <typename K,typename D> 
-void crear(coleccion<K,D> &c);
-
+template <typename K, typename D>
+void crear(coleccion<K, D> &c);
 
 //devuelve true si y solo si existe un nodo con clave key
 //en la coleccion
@@ -108,6 +110,30 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
 //Parcial: la operación no está definida si ya se ha visitado la última terna
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c);
+
+/***********************************************
+    *Funciones auxiliares
+    *––––––––––––––––––––––––––––––––––––––––––
+    *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
+    *––––––––––––––––––––––––––––––––––––––––––
+    ***********************************************/
+template <typename K, typename D>
+bool existeR(typename coleccion<K, D>::nodo *a, K key);
+
+template <typename K, typename D>
+bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
+
+template <typename K, typename D>
+bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key);
+
+template <typename K, typename D>
+bool quitarRepR(typename coleccion<K, D>::nodo *a, K key);
+
+template <typename K, typename D>
+int eliminarR(typename coleccion<K, D>::nodo *a, K key);
+
+template <typename K, typename D>
+bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
 
 //fin de interfaz
 // Declaración:
@@ -182,12 +208,10 @@ private:
 
 //implementar operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
-
 //Crea una colección c vacía (sin nodos)
 template <typename K, typename D>
  void crear(coleccion<K,D> &c){
 
-     c.index=nullptr;
      c.reps = 0;
      c.num = 0;
      c.raiz = nullptr;
@@ -521,4 +545,3 @@ bool avanza(const coleccion<K,D> &c)
 }
 
 #endif // !COLECCION_H
-

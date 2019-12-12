@@ -176,13 +176,14 @@ TEST(quitarRep, no_se_elimina)
 {
     int dat, num;
     coleccion<int, int> c;
-    
+    EXPECT_FALSE(true);
 }
 
 TEST(quitarRep, elimina)
 {
     int dat, num;
     coleccion<int, int> c;
+    EXPECT_FALSE(true);
 }
 
 
@@ -190,6 +191,7 @@ TEST(Iterador,iterador){
 
     int dat, num;
     coleccion<int, int> c;
+    EXPECT_FALSE(true);
 }
 
 
