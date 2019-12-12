@@ -82,7 +82,7 @@ TEST(Introducir, positivos)
 
 TEST(Introducir, cero)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, 0, 1, 1));
@@ -97,7 +97,7 @@ TEST(Introducir, cero)
 
 TEST(Introducir, negativos)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, -1, 1, 1));
@@ -111,7 +111,7 @@ TEST(Introducir, negativos)
 
 TEST(Eliminar, eliminar_sin_hijos)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, 2, 1, 1));
@@ -126,7 +126,7 @@ TEST(Eliminar, eliminar_sin_hijos)
 
 TEST(Eliminar, eliminar_solo_izq)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, 2, 1, 1));
@@ -142,7 +142,7 @@ TEST(Eliminar, eliminar_solo_izq)
 
 TEST(Eliminar, eliminar_solo_der)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, 2, 1, 1));
@@ -157,7 +157,7 @@ TEST(Eliminar, eliminar_solo_der)
 
 TEST(Eliminar, eliminar_dos_hijos)
 {
-    int dat, num;
+    int  num;
     coleccion<int, int> c;
     EXPECT_NO_FATAL_FAILURE(crear(c););
     EXPECT_NO_FATAL_FAILURE(introducir(c, 2, 1, 1));
@@ -174,23 +174,23 @@ TEST(Eliminar, eliminar_dos_hijos)
 
 TEST(quitarRep, no_se_elimina)
 {
-    int dat, num;
-    coleccion<int, int> c;
+    //int dat, num;
+    //coleccion<int, int> c;
     EXPECT_FALSE(true);
 }
 
 TEST(quitarRep, elimina)
 {
-    int dat, num;
-    coleccion<int, int> c;
+    //int dat, num;
+    //coleccion<int, int> c;
     EXPECT_FALSE(true);
 }
 
 
 TEST(Iterador,iterador){
 
-    int dat, num;
-    coleccion<int, int> c;
+    //int dat, num;
+    //coleccion<int, int> c;
     EXPECT_FALSE(true);
 }
 
