@@ -131,11 +131,13 @@ struct coleccion{
     friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
     friend bool avanza(const coleccion<K,D> &c);
 
-    //Funciones auxiliares
-    //––––––––––––––––––––––––––––––––––––––––––
-    //NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
-    //––––––––––––––––––––––––––––––––––––––––––
-    
+    /***********************************************
+    *Funciones auxiliares
+    *––––––––––––––––––––––––––––––––––––––––––
+    *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
+    *––––––––––––––––––––––––––––––––––––––––––
+    ***********************************************/
+
     friend bool existe(typename coleccion<K, D>::nodo *a, K key)
     friend bool introducir(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
     friend bool agnadirRep(typename coleccion<K, D>::nodo *a, K key);
@@ -345,25 +347,50 @@ template <typename K, typename D>
 int eliminar(typename coleccion<K, D>::nodo *a, K key)
 {
     if (a == nullptr){
-        return 0;
+        return 0;// si es vacio el arbol no devuelve reps
     }
 
     if (key < a->clave){
         return eliminar(a.izq, key);
     }
+    else if (key > a->clave)
+    {
+        return eliminar(a.der, key);
+    }
 
-    if (key == a->clave)
+    else if (key == a->clave)
     {
         int eli = a->rep
-        delete a;
-        a=nullptr;
+        typename coleccion<K, D>::nodo *aux;
+        if(a.izq==nullptr){
+            aux =a;
+            a = a.der;
+            delete aux;
+        }
+        else if (a.der ==nullptr)
+        {
+            aux = a;
+            a = a.izq;
+            delete aux;
+        }
+        else{
+            aux = a->izq;
+            while (aux->der != nullptr)
+            {
+                aux = aux->der;
+            }
+            a->dato=aux->dato;
+            a->clave= aux->clave;
+            a->rep=aux->rep;
+            eliminar(a->izq,a->dato);
+           
+            
+        }
         return eli;
     }
        
-    if (key > a->clave){
-        return eliminar(a.der, key);
-    }
-    #warning REORGANIZAR_EL_ABB
+    
+    
 }
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
@@ -433,7 +460,8 @@ void numCardinal(coleccion<K,D> &c, int &card)
 template <typename K, typename D>
 void iniciarIterador(const coleccion<K,D> &c)
 {   
-    delete c.index;
+     c.index = nullptr;
+     clear(c.pl)
     typename coleccion<K, D>::nodo *aux = c.raiz;
     while (aux != nullptr)
     {
