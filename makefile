@@ -26,6 +26,8 @@ BOOK = ${LIB_BOOK}/libro
 LIB_COLEC =${DIR_LIBS}/coleccion
 COLEC = ${LIB_COLEC}/coleccion
 COLTEST = ${LIB_TEST}coltest
+COLPB =${LIB_COLEC}/colpb
+
 
 LIB_PILA = ${DIR_LIBS}/pila
 PILATEST = ${LIB_TEST}pilaMain
@@ -34,6 +36,9 @@ PILATEST = ${LIB_TEST}pilaMain
 # para compilación y enlazado ("linkado")
 CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11    #opciones compilación
 TESTFLAGS = -I.  -Wall -I${LIB_PILA} -I${LIB_COLEC} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
+#---------------------------------------------------------
+colpb: ${COLPB}.cpp
+	${CC} ${COLPB}.cpp   -o ${BUILD}${EJEC} ${CPPFLAGS} 
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 
