@@ -175,7 +175,6 @@ struct coleccion{
         nodo *raiz;//primer elemento
         int reps;//suma de repeteciones de todos los nodos
         int num;//numero de nodos
-        nodo *index;//puntero auxiliar para el iterador estado actual
         int keyMax;//guarda la clave con el valor máximo de la colección
         pila < typename coleccion<K, D>::nodo *> pl;
 };
@@ -460,8 +459,8 @@ void numCardinal(coleccion<K,D> &c, int &card)
 template <typename K, typename D>
 void iniciarIterador(const coleccion<K,D> &c)
 {   
-     c.index = nullptr;
-     clear(c.pl)
+    
+    clear(c.pl)
     typename coleccion<K, D>::nodo *aux = c.raiz;
     while (aux != nullptr)
     {
