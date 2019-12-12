@@ -40,6 +40,10 @@ bool top(pila<D> &p,D &data);
 template <typename D>
 int size(pila<D> &p);
 
+//Devuelve  la pila vacia
+template <typename D>
+void clear(pila<D> &p);
+
 template <typename D>
 struct pila{
     // La pila contatará con un nodo guardian, siendo
@@ -52,6 +56,7 @@ struct pila{
     friend void pop<D>(pila<D> &p);
     friend bool top<D>(pila<D> &p, D &data);
     friend int size<D>(pila<D> &p);
+    friend void clear<D>(pila<D> &p);
 
 private:
 
@@ -130,6 +135,18 @@ template <typename D>
 int size(pila<D> &p)
 {
     return p.len;
+}
+
+//Devuelve  la pila vacia
+template <typename D>
+void clear(pila<D> &p){
+
+    while (p.len>0)
+    {
+        pop(p);
+    }
+    
+
 }
 
 #endif // !PILA_H

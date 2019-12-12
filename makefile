@@ -32,7 +32,7 @@ PILATEST = ${LIB_TEST}pilaMain
 #---------------------------------------------------------
 # para compilación y enlazado ("linkado")
 CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11    #opciones compilación
-TESTFLAGS = -I.  -I${LIB_PILA} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
+TESTFLAGS = -I.  -Wall -I${LIB_PILA} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 

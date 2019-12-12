@@ -136,6 +136,29 @@ TEST(Pila, mezcla){
    
 }
 
+TEST(Pila, limpiar)
+{
+    push(pl, 1);
+    EXPECT_EQ(1, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(1, var);
+
+    push(pl, 4);
+    EXPECT_EQ(2, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(4, var);
+
+    push(pl, -9);
+    EXPECT_EQ(3, size(pl));
+    //compruebo que devuelve el valor correcto
+    EXPECT_TRUE(top(pl, var));
+    EXPECT_EQ(-9, var);
+
+    EXPECT_NO_FATAL_FAILURE(clear(pl));
+    EXPECT_TRUE(empty(pl));
+}
 
 int main(int argc, char **argv)
 {
