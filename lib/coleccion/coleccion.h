@@ -165,13 +165,7 @@ struct coleccion{
     *––––––––––––––––––––––––––––––––––––––––––
     ***********************************************/
 
-    friend bool existeR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-    friend bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
-    friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-    friend bool quitarRepR<K,D>(typename coleccion<K, D>::nodo *a, K key);
-    friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-    friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
-
+    
 private:
     //ATRIBUTOS
     //Cada coleccion guarda la dirección del
@@ -202,8 +196,16 @@ private:
         nodo *raiz;//primer elemento
         int reps;//suma de repeteciones de todos los nodos
         int num;//numero de nodos
-        int keyMax;//guarda la clave con el valor máximo de la colección
         pila < typename coleccion<K, D>::nodo *> pl;
+
+        friend bool existeR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
+        friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend bool quitarRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
+        //template <typename K, typename D>
+        //bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
 };
 
 //implementar operaciones de colecion:
@@ -237,7 +239,7 @@ template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key)
 {
 
-    return existeR(&c.raiz,key);
+    return existeR<K,D>(c.raiz,key);
     
 }
 
@@ -254,7 +256,7 @@ bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
             a->izd->der = nullptr;
             return true;
         }
-        else return introducir(a->izd,key,data,rp);
+        else return introducirR(a->izd,key,data,rp);
     }
 
     if(key == a->clave){
