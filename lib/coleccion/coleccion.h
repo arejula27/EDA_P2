@@ -134,7 +134,7 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
 
 template <typename K, typename D>
-void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, int &eli);
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli);
 
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
@@ -204,7 +204,7 @@ private:
         friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
         friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool quitarRepR<K, D>(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
-        friend void eliminarMaxClave<K, D>(typename coleccion<K, D>::nodo *&a, int &eli);
+        friend void eliminarMaxClave<K, D>(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli);
         friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *&a, K key);
         friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
         //template <typename K, typename D>
@@ -380,17 +380,20 @@ void quitarRep(coleccion<K, D> & c, K key)
 
 
 template <typename K, typename D>
-void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, int &eli){
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli){
     typename coleccion<K, D>::nodo *aux;
     if(a->der == nullptr){
         
         eli = a->rep;
+        key = a->clave;
+        rp = a->rep;
+        dat = a->dato;
         aux = a;
         a = a->izq;
         delete(aux);
     }
     else{
-        eliminarMaxClave<K, D>(a->der,eli);
+        eliminarMaxClave<K, D>(a->der,key,dat,rp,eli);
     }
 
 
@@ -432,7 +435,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         }
         else{
 
-                eliminarMaxClave<K, D>(a->izq,eli);
+                eliminarMaxClave<K, D>(a->izq,a->clave,a->dato,a->rep,eli);
            
             
         }
@@ -541,7 +544,7 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
         key = aux->clave;
         data = aux->dato;
         rp = aux->rep;
-        cout<<key<<endl;
+        
         return true;
     }
 
