@@ -73,7 +73,24 @@ int main(int argc, char **argv)
     numCardinal(c,num);
     cout<<"REPS ?6: "<<num<<endl;
 
+    std::cout  << std::endl;
+    std::cout << "AÑADIR REPS" << std::endl;
     //PARTE DE IÑIGO
+    cout<<"-------------------------------------\n";
+
+    std::cout << "rconstruyo" << std::endl;
+    eliminar(c,5);
+    eliminar(c,10);
+    eliminar(c,4);
+    eliminar(c,0);
+    eliminar(-8);
+
+    introducir(c,4,1,1);
+    introducir(c,3,1,1);
+    introducir(c,6,1,1);
+    introducir(c,5,1,1);
+    introducir(c,10,1,1);
+
     
     agnadirRep(c,5);
     cout<<"AÑADO raiz(5) "<<endl;
