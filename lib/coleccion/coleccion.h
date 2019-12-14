@@ -385,11 +385,11 @@ void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, int &eli){
     if(a->der != nullptr){
         eli = a->der->rep;
         aux = a;
-        a = a->izd;
+        a = a->izq;
         delete(aux);
     }
     else{
-        eliminarMaxClave(a->der,eli);
+        eliminarMaxClave<K, D>(a->der,eli);
     }
 
 
@@ -431,7 +431,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         }
         else{
 
-                elimanarMaxClave(a.izq,eli);
+                eliminarMaxClave<K, D>(a->izq,eli);
            
             
         }
