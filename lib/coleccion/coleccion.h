@@ -156,7 +156,7 @@ struct coleccion{
     friend void iniciarIterador<K,D>(coleccion<K,D> &c);
     friend bool existeSiguiente<K,D>(coleccion<K,D> &c);
     friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
-    friend bool avanza(const coleccion<K,D> &c);
+    friend bool avanza<K, D>(coleccion<K,D> &c);
 
     /***********************************************
     *Funciones auxiliares
@@ -217,7 +217,6 @@ template <typename K, typename D>
      c.reps = 0;
      c.num = 0;
      c.raiz = nullptr;
-     c.keyMax = 0;
      crear(c.pl);
 
 }
@@ -227,9 +226,9 @@ template <typename K, typename D>
 bool existeR(typename coleccion<K, D>::nodo *a, K key)
 {
     if(a == nullptr)return false;
-    if(key < a->clave) return existe(a->izq,key);
+    if(key < a->clave) return existeR<K, D>(a->izq,key);
     if(key == a->clave) return true;
-    if(key > a->clave) return existe(a->der,key);
+    if(key > a->clave) return existeR<K, D>(a->der,key);
 
 }
 
@@ -247,16 +246,16 @@ bool existe(const coleccion<K,D> &c, K key)
 template <typename K, typename D>
 bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
     if(key < a->clave){
-        if(a->izd == nullptr){
-            a->izd = new typename coleccion<K, D>::nodo;
-            a->izd->dato = data;
-            a->izd->clave = key;
-            a->izd->rep = rp;
-            a->izd->izd = nullptr;
-            a->izd->der = nullptr;
+        if(a->izq == nullptr){
+            a->izq = new typename coleccion<K, D>::nodo;
+            a->izq->dato = data;
+            a->izq->clave = key;
+            a->izq->rep = rp;
+            a->izq->izq = nullptr;
+            a->izq->der = nullptr;
             return true;
         }
-        else return introducirR(a->izd,key,data,rp);
+        else return introducirR<K, D>(a->izq,key,data,rp);
     }
 
     if(key == a->clave){
@@ -265,15 +264,15 @@ bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
 
     if(key > a->clave){
         if(a->der == nullptr){
-            a->izd = new typename coleccion<K, D>::nodo;
-            a->izd->dato = data;
-            a->izd->clave = key;
-            a->izd->rep = rp;
-            a->izd->izd = nullptr;
-            a->izd->der = nullptr;
+            a->izq = new typename coleccion<K, D>::nodo;
+            a->izq->dato = data;
+            a->izq->clave = key;
+            a->izq->rep = rp;
+            a->izq->izq = nullptr;
+            a->izq->der = nullptr;
             return true;
         }
-        else return introducir(a->der,key,data,rp);
+        else return introducirR<K, D>(a->der,key,data,rp);
     }
 
 
@@ -291,14 +290,14 @@ void introducir(coleccion<K,D> &c, K key, D data, int rp)
    
    if(c.raiz == nullptr){
         c.raiz =  new typename coleccion<K, D>::nodo;
-        c.raiz->izd = nullptr;
+        c.raiz->izq= nullptr;
         c.raiz->der = nullptr;
         c.raiz->dato = data;
         c.raiz->clave = key;
         c.raiz->rep = rp;
       
    }
-   else if(introducirR(&c.raiz,key,data,rp)){
+   else if(introducirR<K, D>(c.raiz,key,data,rp)){
        c.num++;
        c.reps = c.reps + rp;
    } 
@@ -314,12 +313,12 @@ template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 {
     if(a == nullptr)return false;
-    if(key <  a->clave) return existe(a->izq,key);
+    if(key <  a->clave) return agnadirRepR<K, D>(a->izq,key);
     if(key == a->clave){
         a->rep++;
         return true;
     } 
-    if(key > a->clave) return existe(a->der,key);
+    if(key > a->clave) return agnadirRepR<K, D>(a->der,key);
     
 
 }
@@ -330,7 +329,7 @@ bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c, K key)
 {
-    if(agnadirRepR(&c.raiz,key)) c.reps++;
+    if(agnadirRepR<K, D>(c.raiz,key)) c.reps++;
 }
 
 
@@ -342,19 +341,19 @@ template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
 {
     if(a == nullptr)return false;
-    if(key <  a->clave) return quitarRep(a->izq,key);
+    if(key <  a->clave) return quitarRepR<K, D>(a->izq,key);
     if(key == a->clave){
         a->rep--;
         if(a->rep == 0){
             //llamamos a eliminar en el nodo que queremos elimanar
             //de tal forma que no tiene un costo extra en la busqueda
-            eliminarR(a,a->clave);//ya le 
+            eliminarR<K, D>(a,a->clave);//ya le 
             a=nullptr;
             c.num-- ;
         }
         return true;
     } 
-    if(key > a->clave) return quitarRep(a->der,key);
+    if(key > a->clave) return quitarRepR<K, D>(a->der,key);
     
 
 }
@@ -365,7 +364,7 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
-    if(quitarRepR(&c.raiz,key)) c.reps--;
+    if(quitarRepR<K, D>(c.raiz,key)) c.reps--;
     
 }
 
@@ -379,11 +378,11 @@ int eliminarR(typename coleccion<K, D>::nodo *a, K key)
     }
 
     if (key < a->clave){
-        return eliminarR(a->izq, key);
+        return eliminarR<K, D>(a->izq, key);
     }
     else if (key > a->clave)
     {
-        return eliminarR(a->der, key);
+        return eliminarR<K, D>(a->der, key);
     }
 
     else if (key == a->clave)
@@ -410,7 +409,7 @@ int eliminarR(typename coleccion<K, D>::nodo *a, K key)
             a->dato=aux->dato;
             a->clave= aux->clave;
             a->rep=aux->rep;
-            eliminarR(a->izq,a->dato);
+            eliminarR<K, D>(a->izq,a->dato);
            
             
         }
@@ -427,7 +426,7 @@ template <typename K, typename D>
 void eliminar(coleccion<K,D> &c, K key)
 {
     int eli;
-    eli = eliminarR(&c.raiz,key);
+    eli = eliminarR<K, D>(c.raiz,key);
     if(eli >0)
     {
         c.reps-=eli;
@@ -443,13 +442,13 @@ template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 {
     if(a == nullptr)return false;
-    if(key <  a->clave) return obtenerInfoR(a->izq,key,&data,&rp);
+    if(key <  a->clave) return obtenerInfoR<K, D>(a->izq,key,&data,&rp);
     if(key == a->clave){
         data = a->dato;
         rp = a->rep;
         return true;
     } 
-    if(key > a->clave) return obtenerInfoR(a->der,key,&data,&rp);
+    if(key > a->clave) return obtenerInfoR<K, D>(a->der,key,&data,&rp);
 
     
 
@@ -461,7 +460,7 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
-    obtenerInfoR(c.raiz, key, &data, &rp);
+    obtenerInfoR<K, D>(c.raiz, key, &data, &rp);
 }
 
 //devuelve el numero de nodos de la colección
@@ -494,8 +493,8 @@ void iniciarIterador(const coleccion<K,D> &c)
     typename coleccion<K, D>::nodo *aux = c.raiz;
     while (aux != nullptr)
     {
-        push(&c.pl, aux);
-        aux = aux->izd;
+        push(c.pl, aux);
+        aux = aux->izq;
     }
     
 }
@@ -531,15 +530,15 @@ bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
 //Prepara el iterador para visitar la siguiente terna de la colección c 
 //Parcial: la operación no está definida si ya se ha visitado la última terna
 template <typename K, typename D>
-bool avanza(const coleccion<K,D> &c)
+bool avanza(coleccion<K,D> &c)
 {
     if(!empty(c.pl)){
         typename coleccion<K, D>::nodo *aux;
-        pop(&c.pl);
+        pop(c.pl);
         aux = aux->der;
         while(aux != nullptr){
-                push(&c.pl, aux);
-                aux = aux->izd;
+                push(c.pl, aux);
+                aux = aux->izq;
         }
         return true;
     }
