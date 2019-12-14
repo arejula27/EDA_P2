@@ -165,12 +165,7 @@ struct coleccion{
     friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
     friend bool avanza<K, D>(coleccion<K,D> &c);
 
-    /***********************************************
-    *Funciones auxiliares
-    *––––––––––––––––––––––––––––––––––––––––––
-    *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
-    *––––––––––––––––––––––––––––––––––––––––––
-    ***********************************************/
+    
 
     
 private:
@@ -424,15 +419,8 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
             delete aux;
         }
         else{
-            aux = a->izq;
-            while (aux->der != nullptr)
-            {
-                aux = aux->der;
-            }
-            a->dato=aux->dato;
-            a->clave= aux->clave;
-            a->rep=aux->rep;
-            eliminarR<K, D>(a->izq,a->dato);
+
+                elimanarMaxClave(a.izq,eli);
            
             
         }
@@ -507,7 +495,7 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
 template <typename K, typename D>
-void iniciarIterador(coleccion<K,D> &c)
+void iniciarIterador( coleccion<K,D> &c)
 {   
     
     clear(c.pl);
@@ -561,6 +549,7 @@ bool avanza(coleccion<K,D> &c)
         typename coleccion<K, D>::nodo *aux;
         top(c.pl,aux);
         pop(c.pl);
+        
         aux = aux->der;
         while(aux != nullptr){
                 push(c.pl, aux);
