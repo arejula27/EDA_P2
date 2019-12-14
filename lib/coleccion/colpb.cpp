@@ -9,8 +9,9 @@ int main(int argc, char **argv)
 {
     coleccion<int,int> c;
     crear(c);
-    cout<<"EXISTE ? 0: "<<existe(c,2)<<endl;
+    cout << "CREAR E INTRODUCIR" << endl;
     cout<<"----------------------------------"<<endl;
+    cout<<"EXISTE ? 0: "<<existe(c,2)<<endl;
     cout<<"INRODUCIR: "<<endl;
     introducir(c,5,5,1);
     cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
@@ -65,6 +66,53 @@ int main(int argc, char **argv)
     cout<<"CLAVES ?4: "<<num<<endl;
     numCardinal(c,num);
     cout<<"REPS ?4: "<<num<<endl;
+
+    cout <<  endl;
+    cout << "AÑADIR REPS" << endl;
+    cout<<"-------------------------------------"<<endl;
+    agnadirRep(c,5);
+    cout<<"AÑADO raiz "<<endl;
+    numClaves(c,num);
+    cout<<"CLAVES ?4: "<<num<<endl;
+    numCardinal(c,num);
+    cout<<"REPS ?5: "<<num<<endl;
+
+    agnadirRep(c,4);
+    cout<<"AÑADO izq : "<<endl;
+    numClaves(c,num);
+    cout<<"CLAVES ?4: "<<num<<endl;
+    numCardinal(c,num);
+    cout<<"REPS ?6: "<<num<<endl;
+
+    agnadirRep(c,6);
+    cout<<"AÑADO der : "<<endl;
+    numClaves(c,num);
+    cout<<"CLAVES ?4: "<<num<<endl;
+    numCardinal(c,num);
+    cout<<"REPS ?7: "<<num<<endl;
+
+    agnadirRep(c,10);
+    cout<<"AÑADO der der"<<endl;
+    numClaves(c,num);
+    cout<<"CLAVES ?4: "<<num<<endl;
+    numCardinal(c,num);
+    cout<<"REPS ?8: "<<num<<endl;
+
+
+    agnadirRep(c,-10);
+    cout<<"AÑADO der der"<<endl;
+    numClaves(c,num);
+    cout<<"CLAVES ?4: "<<num<<endl;
+    numCardinal(c,num);
+    cout<<"REPS ?8: "<<num<<endl;
+
+
+
+
+
+
+
+
     
     return 0;
 }
