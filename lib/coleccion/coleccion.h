@@ -254,6 +254,7 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
         a->dato = data;
         a->clave = key;
         a->rep = rp;
+        return true;
     }
       
     
@@ -470,6 +471,7 @@ void numClaves(coleccion<K,D> &c, int &num)
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card)
 {
+   
     card = c.reps;
 }
 
