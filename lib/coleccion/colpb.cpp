@@ -60,22 +60,24 @@ int main(int argc, char **argv)
     cout<<"REPS ?4: "<<num<<endl;
 
     introducir(c,0,6,0);
-    introducir(c,8,6,-8);
+    introducir(c,-8,5,2);
+    introducir(c,8,6,-3);
     cout<<"INRODUCIR: der der"<<endl;
     cout<<"EXISTE raiz(5) ? 1: "<<existe(c,5)<<endl;
     cout<<"EXISTE izq(4) ? 1: "<<existe(c,4)<<endl;
     cout<<"EXISTE der(6) ? 0: "<<existe(c,6)<<endl;
     cout<<"EXISTE der(10) ? 1: "<<existe(c,10)<<endl;
-    cout<<"EXISTE izd(0) ? 1: "<<existe(c,0)<<endl;
+    cout<<"EXISTE izd(0) ? 0: "<<existe(c,0)<<endl;
+    cout<<"EXISTE izd(8) ? 0: "<<existe(c,8)<<endl;
     cout<<"EXISTE izd(-8) ? 1: "<<existe(c,-8)<<endl;
     numClaves(c,num);
-    cout<<"CLAVES ?5: "<<num<<endl;
+    cout<<"CLAVES ? 4: "<<num<<endl;
     numCardinal(c,num);
     cout<<"REPS ?6: "<<num<<endl;
 
     std::cout  << std::endl;
     std::cout << "AÑADIR REPS" << std::endl;
-    //PARTE DE IÑIGO
+    cout<<"PARTE DE IÑIGO\n";
     cout<<"-------------------------------------\n";
 
     std::cout << "rconstruyo" << std::endl;
@@ -83,13 +85,15 @@ int main(int argc, char **argv)
     eliminar(c,10);
     eliminar(c,4);
     eliminar(c,0);
-    eliminar(-8);
+    eliminar(c,-8);
+    
 
     introducir(c,4,1,1);
     introducir(c,3,1,1);
     introducir(c,6,1,1);
     introducir(c,5,1,1);
     introducir(c,10,1,1);
+    
 
     
     agnadirRep(c,5);

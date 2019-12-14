@@ -317,7 +317,7 @@ bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
         a->rep++;
         return true;
     } 
-    if(key > a->clave) return agnadirRepR<K, D>(a->der,key);
+    else return agnadirRepR<K, D>(a->der,key);
     
 
 }
@@ -455,7 +455,7 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
         rp = a->rep;
         return true;
     } 
-    if(key > a->clave) return obtenerInfoR<K, D>(a->der,key,data,rp);
+    else return obtenerInfoR<K, D>(a->der,key,data,rp);
 
     
 
