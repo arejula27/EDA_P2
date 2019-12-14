@@ -134,7 +134,7 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
 
 template <typename K, typename D>
-void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, K key)
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, K key);
 
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
@@ -384,7 +384,11 @@ void quitarRep(coleccion<K, D> & c, K key)
 
 
 template <typename K, typename D>
-int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, K key){
+    
+
+
+}
 
 
 //Devuelve el número de repeteticiones del nodo con clave key
