@@ -134,7 +134,7 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
 
 template <typename K, typename D>
-void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, K key);
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, int &eli);
 
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
@@ -204,6 +204,7 @@ private:
         friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
         friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool quitarRepR<K, D>(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
+        friend void eliminarMaxClave<K, D>(typename coleccion<K, D>::nodo *&a, int &eli);
         friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *&a, K key);
         friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
         //template <typename K, typename D>
