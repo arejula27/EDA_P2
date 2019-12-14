@@ -52,8 +52,6 @@ int main(int argc, char **argv)
     cout<<"EXISTE izq(4) ? 1: "<<existe(c,4)<<endl;
     cout<<"EXISTE der(6) ? 0: "<<existe(c,6)<<endl;
     cout<<"EXISTE der(10) ? 1: "<<existe(c,10)<<endl;
-
-    cout<<"-------------------------------------\n";
     numClaves(c,num);
     cout<<"CLAVES ?3: "<<num<<endl;
     numCardinal(c,num);
@@ -73,12 +71,11 @@ int main(int argc, char **argv)
     numCardinal(c,num);
     cout<<"REPS ?6: "<<num<<endl;
 
-    std::cout  << std::endl;
-    std::cout << "AÑADIR REPS" << std::endl;
-    //PARTE DE IÑIGO
+    cout  << endl;
+    cout << "AÑADIR REPS" << endl;
     cout<<"-------------------------------------\n";
 
-    std::cout << "rconstruyo" << std::endl;
+    cout << "reconstruyo\n" <<endl;
     eliminar(c,5);
     eliminar(c,10);
     eliminar(c,4);
