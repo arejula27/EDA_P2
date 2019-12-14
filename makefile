@@ -38,7 +38,7 @@ CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11    #opciones
 TESTFLAGS = -I.  -Wall -I${LIB_PILA} -I${LIB_COLEC} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
 #---------------------------------------------------------
 colpb: ${COLPB}.cpp
-	${CC} ${COLPB}.cpp   -o ${BUILD}${EJEC} ${CPPFLAGS} 
+	${CC} ${COLPB}.cpp   -o ${COLPB} ${CPPFLAGS} 
 #---------------------------------------------------------
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 

@@ -1,17 +1,29 @@
+#include <iostream>
 #include "coleccion.h"
-int main(int argc, const char** argv) {
 
-    int dat, num;
-    coleccion<int, int> c;
+using namespace std;
+
+
+
+int main(int argc, char **argv)
+{
+    coleccion<int,int> c;
     crear(c);
-introducir(c, 2, 1, 1);
-introducir(c, 3, 1, 1);
+    cout<<"EXISTE ? 0: "<<existe(c,2)<<endl;
+    cout<<"----------------------------------"<<endl;
+    cout<<"INRODUCIR: "<<endl;
+    introducir(c,5,5,1);
+    cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
 
-eliminar(c, 2);
-    numClaves(c, num);
-
-existe(c, 2);
-existe(c, 3);
-
+    introducir(c,4,4,1);
+    cout<<"INRODUCIR: izq "<<endl;
+    cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
+    cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
+    cout<<"INRODUCIR: der "<<endl;
+    introducir(c,6,6,1);
+    cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
+    cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
+    cout<<"EXISTE der ? 1: "<<existe(c,6)<<endl;
+    
     return 0;
 }

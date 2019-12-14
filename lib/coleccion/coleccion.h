@@ -121,7 +121,7 @@ template <typename K, typename D>
 bool existeR(typename coleccion<K, D>::nodo *a, K key);
 
 template <typename K, typename D>
-bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
+bool introducirR(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
 
 template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key);
@@ -199,7 +199,7 @@ private:
         pila < typename coleccion<K, D>::nodo *> pl;
 
         friend bool existeR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-        friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *a, K key, D data, int rp);
+        friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
         friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool quitarRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *a, K key);
@@ -244,35 +244,32 @@ bool existe(const coleccion<K,D> &c, K key)
 
 //Devuelve true si y solo si ha introducido el nodo en la coleccion
 template <typename K, typename D>
-bool introducirR(typename coleccion<K, D>::nodo *a, K key, D data, int rp){
-    if(key < a->clave){
-        if(a->izq == nullptr){
-            a->izq = new typename coleccion<K, D>::nodo;
-            a->izq->dato = data;
-            a->izq->clave = key;
-            a->izq->rep = rp;
-            a->izq->izq = nullptr;
-            a->izq->der = nullptr;
-            return true;
-        }
-        else return introducirR<K, D>(a->izq,key,data,rp);
+bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
+    
+    if(a == nullptr)
+    {
+        a =  new typename coleccion<K, D>::nodo;
+        a->izq= nullptr;
+        a->der = nullptr;
+        a->dato = data;
+        a->clave = key;
+        a->rep = rp;
+    }
+      
+    
+    if(key < a->clave)
+    {
+        return introducirR<K, D>(a->izq,key,data,rp);
     }
 
-    if(key == a->clave){
+    if(key == a->clave)
+    {
         return false;
     }
 
-    if(key > a->clave){
-        if(a->der == nullptr){
-            a->izq = new typename coleccion<K, D>::nodo;
-            a->izq->dato = data;
-            a->izq->clave = key;
-            a->izq->rep = rp;
-            a->izq->izq = nullptr;
-            a->izq->der = nullptr;
-            return true;
-        }
-        else return introducirR<K, D>(a->der,key,data,rp);
+    if(key > a->clave)
+    {
+        return introducirR<K, D>(a->der,key,data,rp);
     }
 
 
@@ -288,16 +285,8 @@ template <typename K, typename D>
 void introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
    
-   if(c.raiz == nullptr){
-        c.raiz =  new typename coleccion<K, D>::nodo;
-        c.raiz->izq= nullptr;
-        c.raiz->der = nullptr;
-        c.raiz->dato = data;
-        c.raiz->clave = key;
-        c.raiz->rep = rp;
-      
-   }
-   else if(introducirR<K, D>(c.raiz,key,data,rp)){
+    if(introducirR<K, D>(c.raiz,key,data,rp))
+    {
        c.num++;
        c.reps = c.reps + rp;
    } 
