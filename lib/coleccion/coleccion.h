@@ -13,6 +13,9 @@
 
 #include "pila.h"
 
+using namespace std;
+
+
 // Interfaz del TAD colección genérico.
 // Pre-declaraciones:
 // El tipo K requerirá tener definida una función:
@@ -127,7 +130,7 @@ template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key);
 
 template <typename K, typename D>
-bool quitarRepR(typename coleccion<K, D>::nodo *a, K key);
+bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *a, K key);
@@ -201,7 +204,7 @@ private:
         friend bool existeR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
         friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-        friend bool quitarRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend bool quitarRepR<K, D>(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
         friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
         //template <typename K, typename D>
@@ -228,7 +231,7 @@ bool existeR(typename coleccion<K, D>::nodo *a, K key)
     if(a == nullptr)return false;
     if(key < a->clave) return existeR<K, D>(a->izq,key);
     if(key == a->clave) return true;
-    if(key > a->clave) return existeR<K, D>(a->der,key);
+    else return existeR<K, D>(a->der,key);
 
 }
 
@@ -254,6 +257,7 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
         a->dato = data;
         a->clave = key;
         a->rep = rp;
+        return true;
     }
       
     
@@ -267,7 +271,7 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
         return false;
     }
 
-    if(key > a->clave)
+    else 
     {
         return introducirR<K, D>(a->der,key,data,rp);
     }
@@ -333,10 +337,13 @@ void agnadirRep(coleccion<K,D> &c, K key)
 //dismiuye el valor de variable entera rep (si la actualiza a cero la elimina)
 //y devuelve true. False  en caso contario
 template <typename K, typename D>
-bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
+bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 {
-    if(a == nullptr)return false;
-    if(key <  a->clave) return quitarRepR<K, D>(a->izq,key);
+    if(a == nullptr){
+        cout<<"-1"<<endl;
+        return false;
+    }
+    if(key <  a->clave) return quitarRepR<K, D>(c,a->izq,key);
     if(key == a->clave){
         a->rep--;
         if(a->rep == 0){
@@ -345,10 +352,15 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
             eliminarR<K, D>(a,a->clave);//ya le 
             a=nullptr;
             c.num-- ;
+            cout<<"0"<<endl;
+        }
+        else{
+            cout<<a->rep<<endl;
         }
         return true;
+
     } 
-    if(key > a->clave) return quitarRepR<K, D>(a->der,key);
+    else return quitarRepR<K, D>(c,a->der,key);
     
 
 }
@@ -359,7 +371,10 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
-    if(quitarRepR<K, D>(c.raiz,key)) c.reps--;
+    if(quitarRepR<K, D>(c,c.raiz,key)){
+        c.reps--;
+    }
+  
     
 }
 
@@ -380,7 +395,7 @@ int eliminarR(typename coleccion<K, D>::nodo *a, K key)
         return eliminarR<K, D>(a->der, key);
     }
 
-    else if (key == a->clave)
+    else
     {
         int eli = a->rep;
         typename coleccion<K, D>::nodo *aux;
@@ -410,9 +425,6 @@ int eliminarR(typename coleccion<K, D>::nodo *a, K key)
         }
         return eli;
     }
-       
-    
-    
 }
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
@@ -455,7 +467,7 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
-    obtenerInfoR<K, D>(c.raiz, key, &data, &rp);
+    return obtenerInfoR<K, D>(c.raiz, key, &data, &rp);
 }
 
 //devuelve el numero de nodos de la colección

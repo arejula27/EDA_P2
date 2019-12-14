@@ -20,22 +20,28 @@ int main(int argc, char **argv)
     cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
     cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
     cout<<"INRODUCIR: der "<<endl;
-    introducir(c,6,6,1);
+    introducir(c,6,6,2);
+    
+    
+    cout<<"REPS(der) ? 1: ";
+    quitarRep(c,6);
+    cout<<"REPS(der) ? 0: ";
+    quitarRep(c,6);
     cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
     cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
     cout<<"EXISTE der ? 1: "<<existe(c,6)<<endl;
     introducir(c,10,6,1);
-     cout<<"INRODUCIR: der der"<<endl;
+    cout<<"INRODUCIR: der der"<<endl;
     cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
     cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
     cout<<"EXISTE der ? 1: "<<existe(c,6)<<endl;
      cout<<"EXISTE der ? 1: "<<existe(c,10)<<endl;
     introducir(c,0,6,1);
     introducir(c,-8,6,1);
-     cout<<"INRODUCIR: der der"<<endl;
+    cout<<"INRODUCIR: der der"<<endl;
     cout<<"EXISTE raiz ? 1: "<<existe(c,5)<<endl;
     cout<<"EXISTE izq ? 1: "<<existe(c,4)<<endl;
-    cout<<"EXISTE der ? 1: "<<existe(c,6)<<endl;
+    cout<<"EXISTE der ? 0: "<<existe(c,6)<<endl;
     cout<<"EXISTE der ? 1: "<<existe(c,10)<<endl;
     cout<<"EXISTE der ? 0: "<<existe(c,0)<<endl;
     cout<<"EXISTE der ? 0: "<<existe(c,-8)<<endl;
