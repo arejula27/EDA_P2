@@ -52,7 +52,7 @@ bool existe(const coleccion<K,D> &c, K key);
 //resultado de añadir en c una   terna (k,data,rp). Si el nodo 
 //ya existe la coleccion queda igual 
 template <typename K, typename D>
-void introducir( coleccion<K,D> &c,K key,D data, int rp );
+bool introducir( coleccion<K,D> &c,K key,D data, int rp );
 
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
@@ -145,7 +145,7 @@ struct coleccion{
 
     friend void crear<K,D>(coleccion<K,D> &c);
     friend bool existe<K,D>(const coleccion<K,D> &c, K key);
-    friend void introducir<K,D>(coleccion<K,D> &c, K key, D data, int rp);
+    friend bool introducir<K,D>(coleccion<K,D> &c, K key, D data, int rp);
     friend void agnadirRep<K,D>(coleccion<K,D> &c, K key);
     friend void quitarRep<K,D>(coleccion<K,D> &c, K key);
     friend void eliminar<K,D>(coleccion<K,D> &c, K key);
@@ -282,14 +282,20 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
 //resultado de añadir en c una   terna (k,data,rp). Si el nodo 
 //ya existe la coleccion queda igual 
 template <typename K, typename D>
-void introducir(coleccion<K,D> &c, K key, D data, int rp)
+bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
-   
-    if(introducirR<K, D>(c.raiz,key,data,rp))
-    {
-       c.num++;
-       c.reps = c.reps + rp;
-   } 
+    if(key>0){
+        if(introducirR<K, D>(c.raiz,key,data,rp))
+        {
+            c.num++;
+            c.reps = c.reps + rp;
+        } 
+        //devuelve true si la clave es natural
+        return true;
+
+   }
+   else return false;
+    
     
 
 }
