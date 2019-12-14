@@ -130,7 +130,7 @@ template <typename K, typename D>
 bool quitarRepR(typename coleccion<K, D>::nodo *a, K key);
 
 template <typename K, typename D>
-int eliminarR(typename coleccion<K, D>::nodo *a, K key);
+int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
 
 template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
@@ -202,7 +202,7 @@ private:
         friend bool introducirR<K, D>(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
         friend bool agnadirRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
         friend bool quitarRepR<K, D>(typename coleccion<K, D>::nodo *a, K key);
-        friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *a, K key);
+        friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *&a, K key);
         friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
         //template <typename K, typename D>
         //bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
@@ -337,7 +337,7 @@ template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
 {
     if(a == nullptr)return false;
-    if(key <  a->clave) return quitarRepR<K, D>(a->izq,key);
+    if(key <  a->clave) return quitarRepR<K, D>(c,a->izq,key);
     if(key == a->clave){
         a->rep--;
         if(a->rep == 0){
@@ -349,7 +349,7 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
         }
         return true;
     } 
-    if(key > a->clave) return quitarRepR<K, D>(a->der,key);
+    if(key > a->clave) return quitarRepR<K, D>(c,a->der,key);
     
 
 }
@@ -360,14 +360,14 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *a, K key)
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
-    if(quitarRepR<K, D>(c.raiz,key)) c.reps--;
+    if(quitarRepR<K, D>(c,c.raiz,key)) c.reps--;
     
 }
 
 //Devuelve el número de repeteticiones del nodo con clave key
 // y lo elimina de la colección, devuelve cero si el puntero es nulo
 template <typename K, typename D>
-int eliminarR(typename coleccion<K, D>::nodo *a, K key)
+int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
 {
     if (a == nullptr){
         return 0;// si es vacio el arbol no devuelve reps
