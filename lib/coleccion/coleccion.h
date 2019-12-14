@@ -373,6 +373,9 @@ void quitarRep(coleccion<K, D> & c, K key)
     
 }
 
+
+
+
 //Devuelve el número de repeteticiones del nodo con clave key
 // y lo elimina de la colección, devuelve cero si el puntero es nulo
 template <typename K, typename D>
@@ -382,7 +385,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         return 0;// si es vacio el arbol no devuelve reps
     }
 
-    if (key < a->clave){
+    else if (key < a->clave){
         return eliminarR<K, D>(a->izq, key);
     }
     else if (key > a->clave)
@@ -406,15 +409,8 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
             delete aux;
         }
         else{
-            aux = a->izq;
-            while (aux->der != nullptr)
-            {
-                aux = aux->der;
-            }
-            a->dato=aux->dato;
-            a->clave= aux->clave;
-            a->rep=aux->rep;
-            eliminarR<K, D>(a->izq,a->dato);
+
+                elimanarMaxClave(a.izq,eli);
            
             
         }
