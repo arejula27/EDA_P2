@@ -482,6 +482,7 @@ void numClaves(coleccion<K,D> &c, int &num)
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card)
 {
+   
     card = c.reps;
 }
 
