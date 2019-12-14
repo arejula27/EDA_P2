@@ -132,6 +132,10 @@ bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key);
 template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
+
+template <typename K, typename D>
+void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, K key)
+
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
 
@@ -378,6 +382,11 @@ void quitarRep(coleccion<K, D> & c, K key)
     
 }
 
+
+template <typename K, typename D>
+int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
+
+
 //Devuelve el número de repeteticiones del nodo con clave key
 // y lo elimina de la colección, devuelve cero si el puntero es nulo
 template <typename K, typename D>
@@ -387,7 +396,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         return 0;// si es vacio el arbol no devuelve reps
     }
 
-    if (key < a->clave){
+    else if (key < a->clave){
         return eliminarR<K, D>(a->izq, key);
     }
     else if (key > a->clave)
@@ -494,7 +503,7 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
 template <typename K, typename D>
-void iniciarIterador(const coleccion<K,D> &c)
+void iniciarIterador(coleccion<K,D> &c)
 {   
     
     clear(c.pl);
@@ -511,7 +520,7 @@ void iniciarIterador(const coleccion<K,D> &c)
 
 //Devuelve true si el puntero del indice no es nulo
 template <typename K, typename D>
-bool existeSiguiente(const coleccion<K,D> &c)
+bool existeSiguiente(coleccion<K,D> &c)
 {
     return !empty(c.pl); //Hay siguiente dato en la pila
 }
@@ -520,7 +529,7 @@ bool existeSiguiente(const coleccion<K,D> &c)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 {
     typename coleccion<K, D>::nodo *aux;
     if(existeSiguiente(c)){
@@ -528,9 +537,13 @@ bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
         key = aux->clave;
         data = aux->dato;
         rp = aux->rep;
+        cout<<key<<endl;
         return true;
     }
-    return false;
+
+    else{
+        return false;
+    }
 
 }
 
@@ -542,6 +555,7 @@ bool avanza(coleccion<K,D> &c)
 {
     if(!empty(c.pl)){
         typename coleccion<K, D>::nodo *aux;
+        top(c.pl,aux);
         pop(c.pl);
         aux = aux->der;
         while(aux != nullptr){
