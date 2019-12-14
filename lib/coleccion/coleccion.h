@@ -288,7 +288,7 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
 template <typename K, typename D>
 bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
-    if(key>0){
+    if(rp>0){
         if(introducirR<K, D>(c.raiz,key,data,rp))
         {
             c.num++;
@@ -449,13 +449,13 @@ template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 {
     if(a == nullptr)return false;
-    if(key <  a->clave) return obtenerInfoR<K, D>(a->izq,key,&data,&rp);
+    if(key <  a->clave) return obtenerInfoR<K, D>(a->izq,key,data,rp);
     if(key == a->clave){
         data = a->dato;
         rp = a->rep;
         return true;
     } 
-    if(key > a->clave) return obtenerInfoR<K, D>(a->der,key,&data,&rp);
+    if(key > a->clave) return obtenerInfoR<K, D>(a->der,key,data,rp);
 
     
 
@@ -467,7 +467,7 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
-    return obtenerInfoR<K, D>(c.raiz, key, &data, &rp);
+    return obtenerInfoR<K, D>(c.raiz, key, data, rp);
 }
 
 //devuelve el numero de nodos de la colección
