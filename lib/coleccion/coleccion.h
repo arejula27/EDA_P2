@@ -382,8 +382,9 @@ void quitarRep(coleccion<K, D> & c, K key)
 template <typename K, typename D>
 void eliminarMaxClave(typename coleccion<K, D>::nodo *&a, int &eli){
     typename coleccion<K, D>::nodo *aux;
-    if(a->der != nullptr){
-        eli = a->der->rep;
+    if(a->der == nullptr){
+        
+        eli = a->rep;
         aux = a;
         a = a->izq;
         delete(aux);

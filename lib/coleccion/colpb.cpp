@@ -188,7 +188,7 @@ int main(int argc, char **argv)
     cout << "OBTENER INFO" << endl;
     cout<<"-------------------------------------"<<endl;
 
-    int dat,rep;
+    int dat,rep,key;
     obtenerInfo(c,3,dat,rep);
     cout << "INFO(3)? 1,2:" << dat<<" "<<rep<<endl;
     obtenerInfo(c,2,dat,rep);
@@ -201,6 +201,165 @@ int main(int argc, char **argv)
     cout << "INFO(7)? 1,1:" << dat<<" "<<rep<<endl;
     obtenerInfo(c,10,dat,rep);
     cout << "INFO(10)? 1,2:" << dat<<" "<<rep<<endl;
+
+
+
+     cout<<endl;
+    cout << "ITERADOR" << endl;
+    cout<<"-------------------------------------"<<endl;
+/*
+    introducir(c,0,1,1);
+    introducir(c,1,1,1);
+    introducir(c,-1,1,1);
+    int key;
+    iniciarIterador(c);
+
+   // cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? -1: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 0: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 1: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 2: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 3: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    key=0;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 4: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 5: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+    //cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 7: "<<key<<endl;
+    //cout<<"AVANZA ? 1: "<<avanza(c)<<endl;
+    avanza(c);
+
+   // cout<<"EXISTE siguiente ? 0: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 10: "<<key<<endl;
+    //cout<<"AVANZA ? 0: "<<avanza(c)<<endl;*/
+
+    //nuevoArbol
+    /*
+    eliminar(c,2);
+    eliminar(c,3);
+    eliminar(c,4);
+    eliminar(c,5);
+    eliminar(c,7);
+    eliminar(c,10);
+    numClaves(c,num) ;
+ */
+    coleccion<int,int> d;
+    crear(d);
+    introducir(d,8,1,1);
+    introducir(d,5,1,1);
+    introducir(d,10,1,1);
+    introducir(d,2,1,1);
+    introducir(d,6,1,1);
+    introducir(d,9,1,1);
+    introducir(d,11,1,1);
+    
+    
+    iniciarIterador(d);
+    
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 2: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 5: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 6: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 8: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 9: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 10: "<<key<<endl;
+    avanza(d);
+
+     siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 11: "<<key<<endl;
+    avanza(d);
+
+
+    eliminar(d,8);
+    eliminar(d,10);
+    iniciarIterador(d);
+
+    cout<<endl;
+    cout<<"-------------------------------------"<<endl;
+
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 2: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 5: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 6: "<<key<<endl;
+    avanza(d);
+
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 9: "<<key<<endl;
+    avanza(d);
+
+  
+
+     siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 11: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 11: "<<key<<endl;
+    avanza(d);
+
+    siguienteNodo(d,key,dat,rep);
+    cout<<"SIGUIENTE? 11: "<<key<<endl;
+    avanza(d);
+
+    numClaves(d,rep);
+    cout<<"Claves?5:: "<<rep<<endl;
 
     
     return 0;
