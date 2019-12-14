@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     eliminar(c,10);
     eliminar(c,4);
     eliminar(c,0);
-    eliminar(-8);
+    eliminar(c,-8);
 
     introducir(c,4,1,1);
     introducir(c,3,1,1);
