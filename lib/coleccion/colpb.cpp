@@ -185,6 +185,23 @@ int main(int argc, char **argv)
     cout<<"EXISTE der der der izq(7) ? 1: "<<existe(c,7)<<endl;
     cout<<"EXISTE no(6) ? 0: "<<existe(c,6)<<endl;
 
+    cout << "OBTENER INFO" << endl;
+    cout<<"-------------------------------------"<<endl;
+
+    int dat,rep;
+    obtenerInfo(c,3,dat,rep);
+    cout << "INFO(3)? 1,2:" << dat<<" "<<rep<<endl;
+    obtenerInfo(c,2,dat,rep);
+    cout << "INFO(2)? 1,1:" << dat<<" "<<rep<<endl;
+    obtenerInfo(c,4,dat,rep);
+    cout << "INFO(4)? 1,1:" << dat<<" "<<rep<<endl;
+    obtenerInfo(c,5,dat,rep);
+    cout << "INFO(5)? 1,1:" << dat<<" "<<rep<<endl;
+    obtenerInfo(c,7,dat,rep);
+    cout << "INFO(7)? 1,1:" << dat<<" "<<rep<<endl;
+    obtenerInfo(c,10,dat,rep);
+    cout << "INFO(10)? 1,2:" << dat<<" "<<rep<<endl;
+
     
     return 0;
 }
