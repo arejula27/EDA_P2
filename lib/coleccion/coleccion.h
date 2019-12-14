@@ -161,12 +161,7 @@ struct coleccion{
     friend bool siguienteNodo<K,D>(coleccion<K,D> &c, K &key, D &data, int &rp);
     friend bool avanza<K, D>(coleccion<K,D> &c);
 
-    /***********************************************
-    *Funciones auxiliares
-    *––––––––––––––––––––––––––––––––––––––––––
-    *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
-    *––––––––––––––––––––––––––––––––––––––––––
-    ***********************************************/
+    
 
     
 private:
@@ -494,7 +489,7 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
 template <typename K, typename D>
-void iniciarIterador(const coleccion<K,D> &c)
+void iniciarIterador( coleccion<K,D> &c)
 {   
     
     clear(c.pl);
@@ -511,7 +506,7 @@ void iniciarIterador(const coleccion<K,D> &c)
 
 //Devuelve true si el puntero del indice no es nulo
 template <typename K, typename D>
-bool existeSiguiente(const coleccion<K,D> &c)
+bool existeSiguiente(coleccion<K,D> &c)
 {
     return !empty(c.pl); //Hay siguiente dato en la pila
 }
@@ -520,7 +515,7 @@ bool existeSiguiente(const coleccion<K,D> &c)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 template <typename K, typename D>
-bool siguienteNodo(const coleccion<K,D> &c, K &key, D &data, int &rp)
+bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 {
     typename coleccion<K, D>::nodo *aux;
     if(existeSiguiente(c)){
@@ -542,7 +537,9 @@ bool avanza(coleccion<K,D> &c)
 {
     if(!empty(c.pl)){
         typename coleccion<K, D>::nodo *aux;
+        top(c.pl,aux);
         pop(c.pl);
+        
         aux = aux->der;
         while(aux != nullptr){
                 push(c.pl, aux);

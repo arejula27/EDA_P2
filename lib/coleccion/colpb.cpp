@@ -202,6 +202,56 @@ int main(int argc, char **argv)
     obtenerInfo(c,10,dat,rep);
     cout << "INFO(10)? 1,2:" << dat<<" "<<rep<<endl;
 
+      cout << "ITERADOR" << endl;
+    cout<<"-------------------------------------"<<endl;
+
+    introducir(c,0,1,1);
+    introducir(c,1,1,1);
+    introducir(c,-1,1,1);
+    int key;
+    iniciarIterador(c);
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? -1: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 0: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 1: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 2: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 3: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 4: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 5: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 7: "<<key<<endl;
+
+    cout<<"EXISTE siguiente ? 1: "<<existeSiguiente(c)<<endl;
+    siguienteNodo(c,key,dat,rep);
+    cout<<"SIGUIENTE? 10: "<<key<<endl;
+
+    
+
+    
+
+
     
     return 0;
 }
