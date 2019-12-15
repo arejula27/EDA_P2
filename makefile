@@ -14,7 +14,8 @@ RM = /bin/rm -f  # para limpiar
 CC = g++        # para compilar
 #---------------------------------------------------------
 # vars
-EJEC = practica2
+SRC = ./src
+EJEC = ${SRC}/practica2
 
 LIB_TEST = ./test/
 BUILD = ./build/
@@ -37,23 +38,24 @@ PILATEST = ${LIB_TEST}pilaMain
 CPPFLAGS= -I. -I${LIB_BOOK} -I${LIB_COLEC} -I${LIB_PILA} -std=c++11    #opciones compilación
 TESTFLAGS = -I.  -Wall -I${LIB_PILA} -I${LIB_COLEC} -std=c++11 -stdlib=libc++ -lgtest  -lgtest_main -pthread
 #---------------------------------------------------------
-colpb: ${COLPB}.cpp
-	${CC} ${COLPB}.cpp   -o ${COLPB} ${CPPFLAGS} 
-#---------------------------------------------------------
+
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
 	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 
-#---------------------------------------------------------
-pilatest: ${PILATEST}.cpp
-	${CC}  ${PILATEST}.cpp ${TESTFLAGS}  -o ${BUILD}pilaTest
-#---------------------------------------------------------
-coltest: ${COLTEST}.cpp
-	${CC}  ${COLTEST}.cpp ${TESTFLAGS}  -o ${BUILD}colTest
 #---------------------------------------------------------
 ${EJEC}.o: ${EJEC}.cpp
 	$(CC) ${EJEC}.cpp -c ${CPPFLAGS} 
 #---------------------------------------------------------
 ${BOOK}.o: ${BOOK}.cpp
 	$(CC) -c ${BOOK}.cpp -o ${BOOK}.o ${CPPFLAGS} 
+#---------------------------------------------------------
+coltest: ${COLTEST}.cpp
+	${CC}  ${COLTEST}.cpp ${TESTFLAGS}  -o ${BUILD}colTest
+#---------------------------------------------------------
+colpb: ${COLPB}.cpp
+	${CC} ${COLPB}.cpp   -o ${COLPB} ${CPPFLAGS} 
+#---------------------------------------------------------
+pilatest: ${PILATEST}.cpp
+	${CC}  ${PILATEST}.cpp ${TESTFLAGS}  -o ${BUILD}pilaTest
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
