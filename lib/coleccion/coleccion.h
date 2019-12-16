@@ -340,7 +340,7 @@ template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 {
     if(a == nullptr){
-        cout<<"-1"<<endl;
+        //cout<<"-1"<<endl;
         return false;
     }
     if(key <  a->clave) return quitarRepR<K, D>(c,a->izq,key);
@@ -352,10 +352,10 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
             eliminarR<K, D>(a,a->clave);//ya le 
             a=nullptr;
             c.num-- ;
-            cout<<"0"<<endl;
+           // cout<<"0"<<endl;
         }
         else{
-            cout<<a->rep<<endl;
+           // cout<<a->rep<<endl;
         }
         return true;
 

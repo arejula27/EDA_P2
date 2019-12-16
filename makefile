@@ -18,7 +18,7 @@ SRC = ./src
 EJEC = ${SRC}/practica2
 
 LIB_TEST = ./test/
-BUILD = ./build/
+#BUILD = ./build/
 DIR_LIBS=./lib
 
 LIB_BOOK = ${DIR_LIBS}/libro
@@ -40,10 +40,10 @@ TESTFLAGS = -I.  -Wall -I${LIB_PILA} -I${LIB_COLEC} -std=c++11 -stdlib=libc++ -l
 #---------------------------------------------------------
 
 ${EJEC}: ${EJEC}.o ${BOOK}.o 
-	${CC} ${EJEC}.o ${BOOK}.o  -o ${BUILD}${EJEC} ${CPPFLAGS} 
+	${CC} ${EJEC}.o ${BOOK}.o  -o ${EJEC} ${CPPFLAGS} 
 #---------------------------------------------------------
 ${EJEC}.o: ${EJEC}.cpp
-	$(CC) ${EJEC}.cpp -c ${CPPFLAGS} 
+	$(CC) -c ${EJEC}.cpp -o ${EJEC}.o ${CPPFLAGS}  
 #---------------------------------------------------------
 ${BOOK}.o: ${BOOK}.cpp
 	$(CC) -c ${BOOK}.cpp -o ${BOOK}.o ${CPPFLAGS} 

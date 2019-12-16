@@ -19,7 +19,7 @@ using namespace std;
  
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección.
 //POST: Se ha añadido una línea en salida.txt resultado de una inserción.
-void AL(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void AL(ifstream &f1, ofstream &f2, coleccion<string,libro > &c)
 {
 
 
@@ -36,8 +36,13 @@ void AL(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
     getline(f1, num);
     rep = stoi(num);
     book = crearLib(title, author, agno);   //Se crea el libro correspondiente a los datos obtenidos
+    
+    int varCla1,varCla2;
+    numClaves(c,varCla1);
+    bool intr =introducir(c,key,book,rep);
+    numClaves(c,varCla2);
 
-    if (introducir(c,key,book,rep)) 
+    if (intr && varCla1 < varCla2) 
     {
         //Se ha introducido con éxito
         string info;
@@ -58,18 +63,24 @@ void AL(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de añadir un ejemplar a la colección
-void AE(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void AE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
     string key;
     getline(f1, key);
+
+    int varRep1,varRep2;
+    numClaves(c,varRep1);
+    agnadirRep(c, key);
+    numClaves(c,varRep2);
     
-    if (existe(c, key))
+    
+    if (varRep1<varRep2)
     {
         //Si el libro está en la colección se añade una repetición
-        agnadirRep(c, key);
         int num;
-        obtenerNumero(c, key, num);
+        libro book;
+        obtenerInfo(c, key,book, num);
         //Se escribe en salida.txt el resultado
         f2 << "ejemplar GUARDADO: " << key << " --- " << to_string(num) << "\n";
         
@@ -83,18 +94,25 @@ void AE(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de eliminar un ejemplar
-void EE(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
 
     string key;
     getline(f1, key);
+
+    int varRep1,varRep2;
+    numClaves(c,varRep1);
+    //Se elimina una repetición del libro y se escribe en salida.txt
+    quitarRep(c, key);
+    numClaves(c,varRep2);
     
-    if(existe(c,key)){
+    
+    if (varRep1>varRep2){
         //El libro está en la en la colección
         int num;
-        obtenerNumero(c, key, num);
-        //Se elimina una repetición del libro y se escribe en salida.txt
-        quitarRep(c, key);
+        libro book;
+        obtenerInfo(c, key,book, num);
+        
         
         
         f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num-1) << "\n";
@@ -102,7 +120,7 @@ void EE(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
     else
     {
         //El libro no está en la colección
-        f2 << "eliminacion INECESARIA: " << key << "\n";
+        f2 << "eliminacion INNECESARIA: " << key << "\n";
     }
     
     
@@ -110,16 +128,24 @@ void EE(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de eliminar un libro de la colección
-void EL(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void EL(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
 
     string key;
     getline(f1, key);
 
-    if(existe(c,key)){
+    int varCla1,varCla2;
+    numClaves(c,varCla1);
+    eliminar(c, key);
+    numClaves(c,varCla2);
+
+    if ( varCla1 > varCla2) 
+    {
+
+  
         //El libro está en la colección
         //Se elimina de la colección y se escribe en salida.txt
-        eliminar(c, key);
+        
         f2 << "libro DESCATALOGADO: " << key << "\n";
     }
     else
@@ -132,19 +158,18 @@ void EL(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt con información del libro
-void LD(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void LD(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
     string key;
     getline(f1, key);
     libro lib;
-    if(obtenerDato(c,key,lib)){
+      int rep;
+    if(obtenerInfo(c,key,lib,rep)){
         //El libro está en colección 
         //Se obtienen los datos del libro
         string info;
         infoLibro(lib, info);
-        int rep;
-        obtenerNumero(c, key, rep);
         //Se escribe en salida.txt el resultado
         f2 << "ENCONTRADO: " << key << ":::"
            << "<*" << info << "(" << rep << ")*>\n";
@@ -157,7 +182,7 @@ void LD(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //Se ha añadido una línea en salida.txt con información de la colección 
-void LT(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void LT(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
     //Obtención de datos
@@ -168,23 +193,19 @@ void LT(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
     //Se escribe la información de la colección
     f2<< "LISTADO: \n" << "TOTAL LIBROS: " << distintos << " ..... ";
     f2<< "TOTAL EJEMPLARES: " << totales << "\n";
-    libro lib;
+    libro book;
     string info;
+    string keyBook ;
+    int repBook ;
     iniciarIterador(c);
     //Bucle para escribir cada la información de cada libro
-    while( siguienteDato(c,lib) ){
-        
-        
-         infoLibro(lib, info);
-         
-         string keyBook ;
-         
-         siguienteClave(c,keyBook);
-         
+    while( existeSiguiente(c) ){
 
-         int repBook ;
-         obtenerNumero(c,keyBook,repBook);
         
+         
+         siguienteNodo(c,keyBook,book,repBook);
+         infoLibro(book, info);
+         
         f2<< keyBook << ":::<* " << info << " (" << repBook << ")*>\n";
         avanza(c);
     }
@@ -192,11 +213,10 @@ void LT(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Ejecuta la orden correpondiente
-void exeOrd(ifstream &f1, ofstream &f2, coleccion<libro, string> &c)
+void exeOrd(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
 
     string orden;
-
     while (getline(f1, orden, '\n')) //Bucle para identificar la orden a ejecutar
     {
         
