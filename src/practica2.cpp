@@ -116,7 +116,7 @@ void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
         
         
         
-        f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num-1) << "\n";
+        f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num) << "\n";
     }
     else
     {
@@ -151,7 +151,7 @@ void EL(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     }
     else
     {   //El libro no está en la colección
-        f2 << "inecesario RETIRAR: " << key << "\n";
+        f2 << "innecesario RETIRAR: " << key << "\n";
     }
     
     
@@ -173,7 +173,7 @@ void LD(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
         infoLibro(lib, info);
         //Se escribe en salida.txt el resultado
         f2 << "ENCONTRADO: " << key << ":::"
-           << "<*" << info << "(" << rep << ")*>\n";
+           << "<* " << info << " (" << rep << ")*>\n";
     }
     else{
         //El libro no está en la colección

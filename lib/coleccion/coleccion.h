@@ -350,7 +350,6 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
             //llamamos a eliminar en el nodo que queremos elimanar
             //de tal forma que no tiene un costo extra en la busqueda
             eliminarR<K, D>(a,a->clave);//ya le 
-            a=nullptr;
             c.num-- ;
            // cout<<"0"<<endl;
         }
