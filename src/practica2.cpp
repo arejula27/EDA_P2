@@ -68,11 +68,12 @@ void AE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     
     string key;
     getline(f1, key);
-
+   // cout<<key<<endl;
     int varRep1,varRep2;
-    numClaves(c,varRep1);
+    numCardinal(c,varRep1);
     agnadirRep(c, key);
-    numClaves(c,varRep2);
+    numCardinal(c,varRep2);
+    //cout << "Antes: " << varRep1<<"ahora: "<<varRep2<<endl;
     
     
     if (varRep1<varRep2)
@@ -101,10 +102,10 @@ void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     getline(f1, key);
 
     int varRep1,varRep2;
-    numClaves(c,varRep1);
+    numCardinal(c,varRep1);
     //Se elimina una repetición del libro y se escribe en salida.txt
     quitarRep(c, key);
-    numClaves(c,varRep2);
+    numCardinal(c,varRep2);
     
     
     if (varRep1>varRep2){

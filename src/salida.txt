@@ -1,63 +1,286 @@
+INSERCION: C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 1
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+INSERCION: C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ENCONTRADO: C_04:::<*c_04 --- a_01 --- 2001(1)*>
+ENCONTRADO: C_20:::<*c_20 --- a_02 --- 2002(2)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
 libro DESCONOCIDO: C_31
 LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+insercion CANCELADA: C_04:::<* c_04 --- AA_01 --- 2010 (3)*>
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+insercion CANCELADA: C_20:::<* c_20 --- AA_02 --- 2020 (2)*>
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ENCONTRADO: C_04:::<*c_04 --- a_01 --- 2001(1)*>
+ENCONTRADO: C_20:::<*c_20 --- a_02 --- 2002(2)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ejemplar GUARDADO: C_04 --- 2
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 4
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ejemplar GUARDADO: C_20 --- 3
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
 ejemplar RECHAZADO: C_00
 LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-eliminacion INNECESARIA: C_13
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
+ejemplar RECHAZADO: C_11
 LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-insercion CANCELADA: C_02:::<* c_02 --- a_30 --- 2010 (-2)*>
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-eliminacion INNECESARIA: C_02
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-ejemplar RECHAZADO: C_02
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-ejemplar RECHAZADO: C_02
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-ejemplar RECHAZADO: C_02
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-inecesario RETIRAR: C_02
-LISTADO: 
-TOTAL LIBROS: 0 ..... TOTAL EJEMPLARES: 0
-INSERCION: C_02:::<* c_02 --- a_30 --- 1001 (10)*>
-LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
-insercion CANCELADA: C_02:::<* c_02 --- AA_30 --- 2001 (20)*>
-LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
 ejemplar RECHAZADO: C_31
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
+ENCONTRADO: C_04:::<*c_04 --- a_01 --- 2001(2)*>
+ENCONTRADO: C_20:::<*c_20 --- a_02 --- 2002(3)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
 libro DESCONOCIDO: C_31
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- a_01 --- 2001 (2)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
+eliminacion INNECESARIA: C_04
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 4
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (3)*>
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+eliminacion INNECESARIA: C_00
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+eliminacion INNECESARIA: C_11
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
 eliminacion INNECESARIA: C_31
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
-inecesario RETIRAR: C_31
-LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ENCONTRADO: C_04:::<*c_04 --- a_01 --- 2001(1)*>
+ENCONTRADO: C_20:::<*c_20 --- a_02 --- 2002(2)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
 libro DESCONOCIDO: C_31
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- a_01 --- 2001 (1)*>
+C_20:::<* c_20 --- a_02 --- 2002 (2)*>
+ejemplar ELIMINADO: C_04 --- -1
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_04
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_04
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+libro DESCONOCIDO: C_04
+libro DESCONOCIDO: C_20
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+INSERCION: C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 3
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+INSERCION: C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+ENCONTRADO: C_04:::<*c_04 --- AA_01 --- 3010(1)*>
+ENCONTRADO: C_20:::<*c_20 --- AA_02 --- 3020(2)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+ejemplar GUARDADO: C_04 --- 2
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 6
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+ejemplar GUARDADO: C_20 --- 3
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 7
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
 ejemplar RECHAZADO: C_00
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
-eliminacion INNECESARIA: C_13
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 7
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
+ejemplar RECHAZADO: C_11
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 7
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
+ejemplar RECHAZADO: C_31
 LISTADO: 
-TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 10
-C_02:::<* c_02 --- a_30 --- 1001 (10)*>
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 7
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
+ENCONTRADO: C_04:::<*c_04 --- AA_01 --- 3010(2)*>
+ENCONTRADO: C_20:::<*c_20 --- AA_02 --- 3020(3)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 7
+C_04:::<* c_04 --- AA_01 --- 3010 (2)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
+eliminacion INNECESARIA: C_04
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 6
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (3)*>
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+eliminacion INNECESARIA: C_00
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+eliminacion INNECESARIA: C_11
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+eliminacion INNECESARIA: C_31
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+ENCONTRADO: C_04:::<*c_04 --- AA_01 --- 3010(1)*>
+ENCONTRADO: C_20:::<*c_20 --- AA_02 --- 3020(2)*>
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 3 ..... TOTAL EJEMPLARES: 5
+C_04:::<* c_04 --- AA_01 --- 3010 (1)*>
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+libro DESCATALOGADO: C_04
+LISTADO: 
+TOTAL LIBROS: 2 ..... TOTAL EJEMPLARES: 4
+C_20:::<* c_20 --- AA_02 --- 3020 (2)*>
+libro DESCATALOGADO: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+libro DESCONOCIDO: C_04
+libro DESCONOCIDO: C_20
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+insercion CANCELADA: C_04:::<* c_04 --- AA_01 --- 3010 (-1)*>
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+insercion CANCELADA: C_20:::<* c_20 --- AA_02 --- 3020 (-2)*>
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+libro DESCONOCIDO: C_04
+libro DESCONOCIDO: C_20
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+ejemplar RECHAZADO: C_04
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+ejemplar RECHAZADO: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_04
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+eliminacion INNECESARIA: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+ejemplar RECHAZADO: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+ejemplar RECHAZADO: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+ejemplar RECHAZADO: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+libro DESCONOCIDO: C_04
+libro DESCONOCIDO: C_20
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+inecesario RETIRAR: C_04
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+inecesario RETIRAR: C_20
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+libro DESCONOCIDO: C_04
+libro DESCONOCIDO: C_20
+libro DESCONOCIDO: C_00
+libro DESCONOCIDO: C_11
+libro DESCONOCIDO: C_31
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
+LISTADO: 
+TOTAL LIBROS: 1 ..... TOTAL EJEMPLARES: 2
