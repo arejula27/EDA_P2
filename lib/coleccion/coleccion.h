@@ -370,7 +370,7 @@ template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 {
     if(a == nullptr){
-        //cout<<"-1"<<endl;
+        
         return false;
     }
     if(key <  a->clave) return quitarRepR<K, D>(c,a->izq,key);
@@ -381,10 +381,10 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
             //de tal forma que no tiene un costo extra en la busqueda
             eliminarR<K, D>(a,a->clave);//ya le 
             c.num-- ;
-           // cout<<"0"<<endl;
+          
         }
         else{
-           // cout<<a->rep<<endl;
+         
         }
         return true;
 
@@ -472,7 +472,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         }
         else{
 
-                eliminarMaxClave<K, D>(a->izq,a->clave,a->dato,a->rep,eli);
+            eliminarMaxClave<K, D>(a->izq,a->clave,a->dato,a->rep,eli);
            
             
         }
