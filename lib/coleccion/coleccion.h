@@ -229,6 +229,7 @@ private:
 //implementar operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 //Crea una colección c vacía (sin nodos)
+//Coste constante en tiempo
 template <typename K, typename D>
  void crear(coleccion<K,D> &c){
 
@@ -240,6 +241,8 @@ template <typename K, typename D>
 }
 
 //Devuelve true si en el abb existe un nodo con clave key
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool existeR(typename coleccion<K, D>::nodo *a, K key)
 {
@@ -252,6 +255,8 @@ bool existeR(typename coleccion<K, D>::nodo *a, K key)
 
 //devuelve true si y solo si existe un nodo con clave key
 //en la coleccion 
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key)
 {
@@ -261,6 +266,8 @@ bool existe(const coleccion<K,D> &c, K key)
 }
 
 //Devuelve true si y solo si ha introducido el nodo en la coleccion
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
     
@@ -300,6 +307,8 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
 //Si no existe un nodo con clave key actualiza la colección 
 //resultado de añadir en c una   terna (k,data,rp). Si el nodo 
 //ya existe la coleccion queda igual 
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
@@ -322,7 +331,9 @@ bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 
 //busca en el abb a si se encuentra el nodo con clave key, en dicho caso
 //aumenta el valor de variable entera rep y devuelve true,
-//false  en caso contario
+//false  en caso contario//Coste o(n) en tiempo
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 {
@@ -340,6 +351,8 @@ bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de reps se actualiza
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c, K key)
 {
@@ -351,6 +364,8 @@ void agnadirRep(coleccion<K,D> &c, K key)
 //busca en el abb a si se encuentra el nodo con clave key, en dicho caso
 //dismiuye el valor de variable entera rep (si la actualiza a cero la elimina)
 //y devuelve true. False  en caso contario
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 {
@@ -382,6 +397,8 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 //Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n-1 (si reps pasa a valer 0 la elimina),
 //en caso contrario la colección no cambia, el valor de reps se actualiza
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
@@ -395,6 +412,8 @@ void quitarRep(coleccion<K, D> & c, K key)
 //Elimina el nodo con mayor clave del subarbol cuya 
 //raiz es a. Actualiza los parámetros de salida con 
 //los datos del nodo eliminado
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli){
     typename coleccion<K, D>::nodo *aux;
@@ -419,6 +438,8 @@ void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp
 
 //Devuelve el número de repeteticiones del nodo con clave key
 // y lo elimina de la colección, devuelve cero si el puntero es nulo
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
 {
@@ -461,6 +482,8 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
 //Si en la colección existe un nodo con clave key entonces se
 //devueva una coleccion igual eliminando el nodo con dicha clave
 //y actualizando los valores de num y reps
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 void eliminar(coleccion<K,D> &c, K key)
 {
@@ -476,7 +499,9 @@ void eliminar(coleccion<K,D> &c, K key)
 
 //Busca en el abb a si se encuentra el nodo con clave key, en dicho caso
 //data = datos del nodo, rp = reps del nodo y devuelve true,
-//false  en caso contario
+//false  en caso contario//Coste o(n) en tiempo
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 {
@@ -496,6 +521,8 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 
 //Si en la colección existe un nodo con clave key entonces 
 // data es igual a los datos del nodo y rp a las reps del mismo 
+//En el peor de los casos tiene coste lineal en la altura
+// que es aproximable a 2log(n) y por tanto es coste o(log(n))
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 {
@@ -503,6 +530,7 @@ bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
 }
 
 //devuelve el numero de nodos de la colección
+//Coste constante en tiempo
 template <typename K, typename D>
 void numClaves(coleccion<K,D> &c, int &num)
 {
@@ -511,6 +539,7 @@ void numClaves(coleccion<K,D> &c, int &num)
 
 //Devuelve el valor de la suma, para todos los nodos
 //(clave, dato,rep) en la colección c, de la tercera componente (rep).
+//coste constante en tiempo
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card)
 {
@@ -525,6 +554,7 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //Inicializa el iterador para recorrer los nodos de la colección c,
 //de forma que el siguiente nodo sea el primero a visitar
 //(situación de no haber visitado ningun nodo).
+//Coste lineal en la altura al apilar los datos.
 template <typename K, typename D>
 void iniciarIterador( coleccion<K,D> &c)
 {   
@@ -542,6 +572,7 @@ void iniciarIterador( coleccion<K,D> &c)
 
 
 //Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
+//Coste constante
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c)
 {
@@ -551,6 +582,7 @@ bool existeSiguiente(coleccion<K,D> &c)
 //Devuelve la clave, dato y  natural (número de repeticiones)
 // del siguiente nodo a visitar de c.
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
+//Coste constante
 template <typename K, typename D>
 bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 {
@@ -573,6 +605,7 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 
 //Prepara el iterador para visitar la siguiente terna de la colección c 
 //Parcial: la operación no está definida si ya se ha visitado la última terna
+//Coste constante
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c)
 {
