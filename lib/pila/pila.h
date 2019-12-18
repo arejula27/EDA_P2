@@ -13,34 +13,41 @@ struct pila;
 
 
 //Devuelve una pila vacia sin elementos 
+//coste: o(1)
 template <typename D>
 void crear(pila<D> &p);
 
 
 //Devuelve verdad si y solo si p no tiene elementos
+//coste: o(1)
 template <typename D>
 bool empty(pila<D> &p);
 
 
 //Devuelve la pila resultante de apilar data en p
+//coste: o(1)
 template <typename D>
 void push(pila<D> &p, D data);
 
 //DEvuelve la pila resultante al eliminar el último elemento
 //que fue apilado, si p es es vacia la devuelve igual
+//coste: o(1)
 template <typename D>
 void pop(pila<D> &p);
 
 //Devuelve el último elemento apilado
 //Parcial, operacion no definida para pila vacia
+//coste: o(1)
 template <typename D>
 bool top(pila<D> &p,D &data);
 
 //Devuelve  el número de elementos de la pila 
+//coste: o(1)
 template <typename D>
 int size(pila<D> &p);
 
 //Devuelve  la pila vacia
+//coste: o(n)
 template <typename D>
 void clear(pila<D> &p);
 
