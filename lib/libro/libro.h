@@ -35,8 +35,8 @@ string autor (libro lib);
 int agno (libro lib);
 
 //PRE: -
-//POS: info almacena la cadena "titulo --- autor --- año"
-//     correspondiente al libro
+//POS: el parámero info almacena la cadena "titulo --- autor --- año"
+//     correspondiente al los atributos del libro
 void infoLibro(libro lib, string &info);
 
 struct libro{
@@ -47,6 +47,9 @@ struct libro{
     friend void infoLibro(libro lib, string &info);
 
 private:
+    //ATRIBUTOS
+    //Tenemos dos strings correspondientes al titulo y a su autor
+    //el entero representa el año de edición
     string titulo;
     string autor;
     int agno;
