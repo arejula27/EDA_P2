@@ -23,19 +23,20 @@ struct libro;
 libro crearLib(string titulo, string autor, int agno);
 
 //PRE: -
-//POS: titulo(lib)= lib.titulo
+//POS: Devuelve el titulo del libro
 string titulo (libro lib);
 
 //PRE: -
-//POS: autor(lib)= lib.autor
+//POS: Devuelve el autor del libro
 string autor (libro lib);
 
 //PRE: -
-//POS: agno(lib)= lib.agno
+//POS: Devuelve el año del libro
 int agno (libro lib);
 
 //PRE: -
-//POS: info= "titulo --- autor --- año"
+//POS: info almacena la cadena "titulo --- autor --- año"
+//     correspondiente al libro
 void infoLibro(libro lib, string &info);
 
 struct libro{

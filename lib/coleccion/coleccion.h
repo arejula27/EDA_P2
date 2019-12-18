@@ -85,7 +85,7 @@ template <typename K, typename D>
 void numClaves(coleccion<K,D> &c, int &num);
 
 //Devuelve el valor de la suma, para todos los nodos 
-//(clave, dato,rep) en la colección c, de la tercera componente, rep.
+//(clave, dato,rep) en la colección c, de la tercera componente(rep).
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card);
 
@@ -98,7 +98,7 @@ void numCardinal(coleccion<K,D> &c, int &card);
 template <typename K, typename D>
 void iniciarIterador(coleccion<K,D> &c);
 
-//Devuelve verdad si y sólo si queda alguna terna por visitar con el iterador de la colección c
+//Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c);
 
@@ -120,25 +120,41 @@ bool avanza(coleccion<K,D> &c);
     *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
     *––––––––––––––––––––––––––––––––––––––––––
     ***********************************************/
+
+//Devuelve true si en el abb existe un nodo con clave key
 template <typename K, typename D>
 bool existeR(typename coleccion<K, D>::nodo *a, K key);
 
+//Devuelve true si y solo si ha introducido el nodo en la coleccion
 template <typename K, typename D>
 bool introducirR(typename coleccion<K, D>::nodo *&a, K key, D data, int rp);
 
+//busca en el abb a si se encuentra el nodo con clave key, en dicho caso
+//aumenta el valor de variable entera rep y devuelve true,
+//false  en caso contario
 template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key);
 
+//busca en el abb a si se encuentra el nodo con clave key, en dicho caso
+//dismiuye el valor de variable entera rep (si la actualiza a cero la elimina)
+//y devuelve true. False  en caso contario
 template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key);
 
-
+//Elimina el nodo con mayor clave del subarbol cuya 
+//raiz es a. Actualiza los parámetros de salida con 
+//los datos del nodo eliminado
 template <typename K, typename D>
 void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli);
 
+//Devuelve el número de repeteticiones del nodo con clave key
+// y lo elimina de la colección, devuelve cero si el puntero es nulo
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
 
+//Busca en el abb a si se encuentra el nodo con clave key, en dicho caso
+//data = datos del nodo, rp = reps del nodo y devuelve true,
+//false  en caso contario
 template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
 
@@ -207,8 +223,7 @@ private:
         friend void eliminarMaxClave<K, D>(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli);
         friend int eliminarR<K, D>(typename coleccion<K, D>::nodo *&a, K key);
         friend bool obtenerInfoR<K, D>(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
-        //template <typename K, typename D>
-        //bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
+       
 };
 
 //implementar operaciones de colecion:
@@ -377,7 +392,9 @@ void quitarRep(coleccion<K, D> & c, K key)
     
 }
 
-
+//Elimina el nodo con mayor clave del subarbol cuya 
+//raiz es a. Actualiza los parámetros de salida con 
+//los datos del nodo eliminado
 template <typename K, typename D>
 void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp, int &eli){
     typename coleccion<K, D>::nodo *aux;
@@ -417,7 +434,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
         return eliminarR<K, D>(a->der, key);
     }
 
-    else
+    else //Es el nodo a eliminar
     {
         int eli = a->rep;
         typename coleccion<K, D>::nodo *aux;
@@ -493,7 +510,7 @@ void numClaves(coleccion<K,D> &c, int &num)
 }
 
 //Devuelve el valor de la suma, para todos los nodos
-//(clave, dato,rep) en la colección c, de la tercera componente, rep.
+//(clave, dato,rep) en la colección c, de la tercera componente (rep).
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card)
 {
@@ -524,7 +541,7 @@ void iniciarIterador( coleccion<K,D> &c)
 
 
 
-//Devuelve true si el puntero del indice no es nulo
+//Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c)
 {

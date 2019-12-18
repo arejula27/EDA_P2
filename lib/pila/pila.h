@@ -17,12 +17,12 @@ template <typename D>
 void crear(pila<D> &p);
 
 
-//Devuelve verdad si y solo si p no tiene elemntos
+//Devuelve verdad si y solo si p no tiene elementos
 template <typename D>
 bool empty(pila<D> &p);
 
 
-//Devuelve la pila resultante de añadir e a p
+//Devuelve la pila resultante de apilar data en p
 template <typename D>
 void push(pila<D> &p, D data);
 
@@ -46,7 +46,7 @@ void clear(pila<D> &p);
 
 template <typename D>
 struct pila{
-    // La pila contatará con un nodo guardian, siendo
+    // La pila contará con un nodo guardian, siendo
     // este siempre el que se encuentre en la posición 
     // más baja, icluso en la sitacion de pila vacia
 
@@ -82,25 +82,25 @@ void crear(pila<D> &p)
     p.len =0;
 }
 
-//Devuelve verdad si y solo si p no tiene elemntos
+//Devuelve verdad si y solo si p no tiene elementos
 template <typename D>
 bool empty(pila<D> &p)
 {
-    return p.len?false:true;
+    return p.len? false:true;
 }
 
-//Devuelve la pila resultante de añadir e a p
+//Devuelve la pila resultante de añadir data a p
 template <typename D>
 void push(pila<D> &p, D data)
 {   
     typename pila<D>::nodo *aux = p.top;
     p.top = new typename pila<D>::nodo;
-    p.top->down = aux;
+    p.top->down = aux; 
     p.len++;
     p.top->dato = data;
 }
 
-//DEvuelve la pila resultante al eliminar el último elemento
+//Devuelve la pila resultante al eliminar el último elemento
 //que fue apilado, si p es es vacia la devuelve igual
 template <typename D>
 void pop(pila<D> &p)
