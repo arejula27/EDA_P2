@@ -217,6 +217,8 @@ void LT(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     int repBook ;
     iniciarIterador(c);
     //Bucle para escribir cada la información de cada libro
+    //Aunque existeSiguiente tiene coste constante,
+    //al usarlo como guarda se considera coste lineal en la altura
     //siguineteNodo, infoLibro y avanza tienen coste constante, como las realizamos 
     // n veces siendo n el numero de elementos en c este bucle tiene coste o(n)
     while( existeSiguiente(c) ){
