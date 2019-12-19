@@ -52,7 +52,7 @@ void crear(coleccion<K, D> &c);
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key);
 
@@ -62,27 +62,27 @@ bool existe(const coleccion<K,D> &c, K key);
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K, data de tipo D y rp de tipo int
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool introducir( coleccion<K,D> &c,K key,D data, int rp );
 
 //Si existe una terna con clave key y repeticiones = n entonces el valor de
-//repeticones del nodo pasa a valer n+1, en caso contrario la colección
+//repeticones de la terna pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de repeticiones se actualiza
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c,K key);
 
 //Si existe una terna con clave key y repeticiones = n entonces el valor de
-//repeticones del nodo pasa a valer n-1 (si repeteciones pasa a valer 0 la terna se elimina),
+//repeticones de la terna pasa a valer n-1 (si repeteciones pasa a valer 0 la terna se elimina),
 //en caso contrario la colección no cambia, el valor de repeticiones se actualiza
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void quitarRep(coleccion<K,D> &c,K key);
 
@@ -92,7 +92,7 @@ void quitarRep(coleccion<K,D> &c,K key);
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void eliminar(coleccion<K,D> &c,K key);
 
@@ -101,7 +101,7 @@ void eliminar(coleccion<K,D> &c,K key);
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida: data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp);
@@ -109,7 +109,7 @@ bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp);
 //devuelve el numero de ternas de la colección
 //Coste constante: o(1)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida:  num de tipo int
 template <typename K, typename D>
 void numClaves(coleccion<K,D> &c, int &num);
@@ -118,7 +118,7 @@ void numClaves(coleccion<K,D> &c, int &num);
 // de todas las ternas de la colección
 //Coste constante: o(1)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida:  card de tipo int
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card);
@@ -131,13 +131,13 @@ void numCardinal(coleccion<K,D> &c, int &card);
 //(situación de no haber visitado ninguna terna).
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void iniciarIterador(coleccion<K,D> &c);
 
 //Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
 //Parámetros:
-//Entrada: Colección de tipo coleccion
+//Entrada: c de tipo coleccion
 //Coste constante: o(1)
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c);
@@ -147,7 +147,7 @@ bool existeSiguiente(coleccion<K,D> &c);
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 //Coste constante: o(1)
 //Parámetros:
-//Entrada: Colección de tipo coleccion
+//Entrada: c de tipo coleccion
 //Salida: key de tipo K, data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
@@ -157,7 +157,7 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
 //Parcial: la operación no está definida si ya se ha visitado la última terna
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c);
 
@@ -291,9 +291,9 @@ template <typename K, typename D>
 
 }
 
-//devuelve true si y solo si existe una terna con clave key
-//en la coleccion
-//En el peor de los casos tiene coste o(n)
+//devuelve true si y solo si existe un nodo con clave key
+//en el arbol cuyo nodo raiz es a
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: a de tipo puntero a nodo, key de tipo K
 template <typename K, typename D>
@@ -306,12 +306,12 @@ bool existeR(typename coleccion<K, D>::nodo *a, K key)
 
 }
 
-//devuelve true si y solo si existe una terna con clave key
-//en la coleccion
-//En el peor de los casos tiene coste o(n)
+//devuelve true si y solo si existe un nodo con clave key
+//en el arbol
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key)
 {
@@ -320,12 +320,12 @@ bool existe(const coleccion<K,D> &c, K key)
     
 }
 
-//Si no existe una terna con clave key, actualiza el arbol
-//resultado de añadir en la colección una terna (k,data,rp). Si la terna 
+//Si no existe un nodo con clave key, actualiza el arbol cuya raiz es a
+//resultado de añadir el nodo con clave k dato data y rep rp. Si el nodo
 //ya existe devuelve false
-//En el peor de los casos tiene coste o(n)
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
-//Entrada: a de tipo arbol nodo, key de tipo K,data de tipo D, rp de tipo int
+//Entrada: a de tipo nodo, key de tipo K,data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
     
@@ -362,13 +362,13 @@ bool introducirR(typename coleccion<K, D>::nodo*& a, K key, D data, int rp){
 
 
 
-//Si no existe una terna con clave key, actualiza la colección 
-//resultado de añadir en la colección una terna (k,data,rp). Si la terna 
-//ya existe la coleccion queda igual 
+//Si no existe un nodo con clave key, actualiza el arbol
+//resultado de añadir el nodo con clave k dato data y rep rp.
+//Si el nodo  ya existe la coleccion queda igual 
 //En el peor de los casos tiene coste o(n)
 //Parámetros:
 //Entrada: key de tipo K, data de tipo D y rp de tipo int
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 {
@@ -389,12 +389,13 @@ bool introducir(coleccion<K,D> &c, K key, D data, int rp)
 }
 
 
-//Si existe una terna en el arbol con clave key y repeticiones = n entonces el valor de
-//repeticones del nodo pasa a valer n+1, en caso contrario la colección
+//Si existe un nodo en el arbol cuya raiz es a y repeticiones = n 
+//entonces el valor de repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de repeticiones se actualiza
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
-//Entrada: key de tipo K
-//Entrada/salida: arbol de nodos 
+//Entrada: key de tipo K y a de tipo puntero a nodo 
+//Entrada/salida: a de tipo puntero a nodo 
 template <typename K, typename D>
 bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 {
@@ -410,13 +411,13 @@ bool agnadirRepR(typename coleccion<K, D>::nodo *a, K key)
 }
 
 
-//Si existe una terna con clave key y repeticiones = n entonces el valor de
+//Si existe un nodo con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
 //no cambia, el valor de repeticiones se actualiza
-//En el peor de los casos tiene coste o(n)
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c, K key)
 {
@@ -425,7 +426,13 @@ void agnadirRep(coleccion<K,D> &c, K key)
 
 
 
-
+//Si existe un nodo con clave key en el abb cuya raiz es a y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n-1 (si repeteciones pasa a valer 0 la terna se elimina),
+//en caso contrario la colección no cambia, el valor de repeticiones se actualiza
+//En el peor de los casos tiene coste o(n) en la altura
+//Parámetros:
+//Entrada: key de tipo K 
+//Entrada/salida: a de tipo puntero a nodo 
 template <typename K, typename D>
 bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 {
@@ -454,13 +461,13 @@ bool quitarRepR(coleccion<K, D> &c,typename coleccion<K, D>::nodo *&a, K key)
 
 }
 
-//Si existe una terna con clave key y repeticiones = n entonces el valor de
-//repeticones del nodo pasa a valer n-1 (si repeteciones pasa a valer 0 la terna se elimina),
+//Si existe un nodo con clave key y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n-1 (si repeteciones pasa a valer 0 se elimina el nodo),
 //en caso contrario la colección no cambia, el valor de repeticiones se actualiza
-//En el peor de los casos tiene coste o(n)
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void quitarRep(coleccion<K, D> & c, K key)
 {
@@ -495,6 +502,13 @@ void eliminarMaxClave(typename coleccion<K, D>::nodo *&a,K &key, D &dat, int &rp
 
 
 
+//Si en el abb cuya raiz es a existe un nodo con clave key entonces se 
+//devueve el arbol igual eliminando el nodo con dicha clave
+//y actualizando los valores de num y reps
+//En el peor de los casos tiene coste o(n) en la altura
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: a de tipo puntero a nodo
 template <typename K, typename D>
 int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
 {
@@ -535,13 +549,13 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key)
     }
 }
 
-//Si en la colección existe una terna con clave key entonces se 
-//devueva una coleccion igual eliminando la terna con dicha clave
+//Si en c existe un nodo con clave key entonces se 
+//devueve la coleccion igual eliminando el nodo con dicha clave
 //y actualizando los valores de num y reps
-//En el peor de los casos tiene coste o(n)
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void eliminar(coleccion<K,D> &c, K key)
 {
@@ -555,7 +569,12 @@ void eliminar(coleccion<K,D> &c, K key)
 
 }
 
-
+//Si en el abb cuya raiz es a existe un nodo con clave key entonces 
+// data es igual a los datos del nodo y rp a las repeticiones del mismo
+//En el peor de los casos tiene coste o(n) en la altura
+//Parámetros:
+//Entrada: key de tipo K y a de tipo puntero a nodo
+//Salida: data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 {
@@ -573,12 +592,12 @@ bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp)
 }
 
 
-//Si en la colección existe una terna con clave key entonces 
-// data es igual a los datos de la terna y rp a las repeticiones de la misma
-//En el peor de los casos tiene coste o(n)
+//Si en c existe un nodo con clave key entonces 
+// data es igual a los datos del nodo y rp a las repeticiones del mismo
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
 //Entrada: key de tipo K
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida: data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
@@ -586,10 +605,10 @@ bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp)
     return obtenerInfoR<K, D>(c.raiz, key, data, rp);
 }
 
-//devuelve el numero de ternas de la colección
+//devuelve el numero nodos de arbol
 //Coste constante: o(1)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida:  num de tipo int
 template <typename K, typename D>
 void numClaves(coleccion<K,D> &c, int &num)
@@ -598,10 +617,10 @@ void numClaves(coleccion<K,D> &c, int &num)
 }
 
 //Devuelve el valor de la suma, de todas las repeticiones 
-// de todas las ternas de la colección
+// de todas los nodos del arbol
 //Coste constante: o(1)
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 //Salida:  card de tipo int
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card)
@@ -614,12 +633,12 @@ void numCardinal(coleccion<K,D> &c, int &card)
 //–––––––––––––––––––––––––––––––––––––––––––––––––
 
 
-//Inicializa el iterador para recorrer llas ternasde la colección, 
-//de forma que la siguiente terna sea el primero a visitar 
+//Inicializa el iterador para recorrer los nodos del arbol, 
+//de forma que 
 //(situación de no haber visitado ninguna terna).
-//En el peor de los casos tiene coste o(n)
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 void iniciarIterador( coleccion<K,D> &c)
 {   
@@ -637,9 +656,9 @@ void iniciarIterador( coleccion<K,D> &c)
 
 
 
-//Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
+//Devuelve true si y sólo si queda algun nodo por visitar con el iterador de la colección c
 //Parámetros:
-//Entrada: Colección de tipo coleccion
+//Entrada: c de tipo coleccion
 //Coste constante: o(1)
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c)
@@ -648,11 +667,11 @@ bool existeSiguiente(coleccion<K,D> &c)
 }
 
 //Devuelve la clave, dato y  natural (número de repeticiones)
-// del siguiente terna a visitar de la coleccion. 
-//Parcial: la operación no está definida si ya se ha visitado la última terna.
+// del siguiente nodo a visitar del arbol. 
+//Parcial: la operación no está definida si ya se ha visitado la último nodo.
 //Coste constante: o(1)
 //Parámetros:
-//Entrada: Colección de tipo coleccion
+//Entrada: c de tipo coleccion
 //Salida: key de tipo K, data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
@@ -673,11 +692,11 @@ bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp)
 
 }
 
-//Prepara el iterador para visitar la siguiente terna de la colección 
-//Parcial: la operación no está definida si ya se ha visitado la última terna
-//En el peor de los casos tiene coste o(n)
+//Prepara el iterador para visitar el siguiente nodo  del arbol
+//Parcial: la operación no está definida si ya se ha visitado el ultimo nodo
+//En el peor de los casos tiene coste o(n) en la altura
 //Parámetros:
-//Entrada/salida: Colección de tipo coleccion
+//Entrada/salida: c de tipo coleccion
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c)
 {
