@@ -16,133 +16,160 @@
 using namespace std;
 
 
-// Interfaz del TAD colección genérico.
-// Pre-declaraciones:
-// El tipo K requerirá tener definida una función:
-// bool operator== (const K& t1, const K& t2)
-// bool operator < (const K& t1, const K& t2)
-// bool operator <= (const K& t1, const K& t2)
-// bool operator > (const K& t1, const K& t2)
-// bool operator >= (const K& t1, const K& t2)
+
 
 // Los valores del TAD representan 
 // colecciones de ternas(clave, dato, natural), en 
-// las que no se permiten claves repetidas, en las que
-// el natural representa el número de veces que está repetido
-// el par(clave, dato) en la colección, y que cuentan con operaciones
-// para gestionar las ternas además de un iterador para recorrerlas. }
+// las que no se permiten claves repetidas dentro de la coleción.
+//  Las ternas estan compuesta por una clave de tipo K, un dato de tipo D
+//y un numero natural de tipo int (por lo que no se podrá usar ni el 0 ni los 
+// negativos). El natural indica el número de veces que se encuentra dicho dato y clave 
+// en la colección, por ello más adelante se hara referencia a este natural como repeteciones
+//  
+// La colección cuenta con un iterado que nos permitirá recorrer toda la colección
+// yendo de la menor clave a la mayor.
+//
+// El tipo K requerirá tener definida una función:
+// bool operator== (const K& t1, const K& t2)
+// bool operator < (const K& t1, const K& t2) siendo t1 menor que t2
+// bool operator > (const K& t1, const K& t2) siendo t1 mayor que t2
 
+// Interfaz del TAD colección genérico.
 template <typename K,typename D>
 struct coleccion;
 
 
-//template <typename K, typename D>
-//typename coleccion<K, D>::nodo;
-
 //definir operaciones de colecion:
 //––––––––––––––––––––––––––––––––––
 
-//Crea una colección c vacía (sin nodos)
+//Crea una colección c vacía 
 //Coste constante en tiempo: o(1)
 template <typename K, typename D>
 void crear(coleccion<K, D> &c);
 
-//devuelve true si y solo si existe un nodo con clave key
+//devuelve true si y solo si existe una terna con clave key
 //en la coleccion
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 bool existe(const coleccion<K,D> &c, K key);
 
-//Si no existe un nodo con clave key actualiza la colección 
-//resultado de añadir en c una   terna (k,data,rp). Si el nodo 
+//Si no existe una terna con clave key, actualiza la colección 
+//resultado de añadir en la colección una terna (k,data,rp). Si la terna 
 //ya existe la coleccion queda igual 
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K, data de tipo D y rp de tipo int
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 bool introducir( coleccion<K,D> &c,K key,D data, int rp );
 
-//Si existe un nodo con clave key y repeticiones = n entonces el valor de
+//Si existe una terna con clave key y repeticiones = n entonces el valor de
 //repeticones del nodo pasa a valer n+1, en caso contrario la colección
-//no cambia, el valor de reps se actualiza
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//no cambia, el valor de repeticiones se actualiza
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 void agnadirRep(coleccion<K,D> &c,K key);
 
-//Si existe un nodo con clave key y repeticiones = n entonces el valor de
-//repeticones del nodo pasa a valer n-1 (si reps pasa a valer 0 la elimina),
-//en caso contrario la colección no cambia, el valor de reps se actualiza
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//Si existe una terna con clave key y repeticiones = n entonces el valor de
+//repeticones del nodo pasa a valer n-1 (si repeteciones pasa a valer 0 la terna se elimina),
+//en caso contrario la colección no cambia, el valor de repeticiones se actualiza
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 void quitarRep(coleccion<K,D> &c,K key);
 
-//Si en la colección existe un nodo con clave key entonces se 
-//devueva una coleccion igual eliminando el nodo con dicha clave
+//Si en la colección existe una terna con clave key entonces se 
+//devueva una coleccion igual eliminando la terna con dicha clave
 //y actualizando los valores de num y reps
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 void eliminar(coleccion<K,D> &c,K key);
 
-//Si en la colección existe un nodo con clave key entonces 
-// data es igual a los datos del nodo y rp a las reps del mismo 
-//En el peor de los casos tiene coste lineal en la altura
-// que es aproximable a log2(n) y por tanto es coste o(log(n))
+//Si en la colección existe una terna con clave key entonces 
+// data es igual a los datos de la terna y rp a las repeticiones de la misma
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada: key de tipo K
+//Entrada/salida: Colección de tipo coleccion
+//Salida: data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool obtenerInfo(coleccion<K,D> &c, K key, D &data, int &rp);
 
-//devuelve el numero de nodos de la colección
+//devuelve el numero de ternas de la colección
 //Coste constante: o(1)
+//Parámetros:
+//Entrada/salida: Colección de tipo coleccion
+//Salida:  num de tipo int
 template <typename K, typename D>
 void numClaves(coleccion<K,D> &c, int &num);
 
-//Devuelve el valor de la suma, para todos los nodos 
-//(clave, dato,rep) en la colección c, de la tercera componente(rep).
+//Devuelve el valor de la suma, de todas las repeticiones 
+// de todas las ternas de la colección
 //Coste constante: o(1)
+//Parámetros:
+//Entrada/salida: Colección de tipo coleccion
+//Salida:  card de tipo int
 template <typename K, typename D>
 void numCardinal(coleccion<K,D> &c, int &card);
 
 //definir operaciones del iterdador de la colecion:
 //–––––––––––––––––––––––––––––––––––––––––––––––––
 
-//Inicializa el iterador para recorrer los nodos de la colección c, 
-//de forma que el siguiente nodo sea el primero a visitar 
-//(situación de no haber visitado ningun nodo).
-//Coste lineal en la altura al apilar los datos.
+//Inicializa el iterador para recorrer llas ternasde la colección, 
+//de forma que la siguiente terna sea el primero a visitar 
+//(situación de no haber visitado ninguna terna).
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 void iniciarIterador(coleccion<K,D> &c);
 
 //Devuelve true si y sólo si queda alguna terna por visitar con el iterador de la colección c
+//Parámetros:
+//Entrada: Colección de tipo coleccion
 //Coste constante: o(1)
 template <typename K, typename D>
 bool existeSiguiente(coleccion<K,D> &c);
 
 //Devuelve la clave, dato y  natural (número de repeticiones)
-// del siguiente nodo a visitar de c. 
+// del siguiente terna a visitar de la coleccion. 
 //Parcial: la operación no está definida si ya se ha visitado la última terna.
 //Coste constante: o(1)
+//Parámetros:
+//Entrada: Colección de tipo coleccion
+//Salida: key de tipo K, data de tipo D, rp de tipo int
 template <typename K, typename D>
 bool siguienteNodo(coleccion<K,D> &c, K &key, D &data, int &rp);
 
 
-//Prepara el iterador para visitar la siguiente terna de la colección c 
+//Prepara el iterador para visitar la siguiente terna de la colección 
 //Parcial: la operación no está definida si ya se ha visitado la última terna
-//En el mejor caso coste constante o(1) en el peor lineal en la altura dos veces
-//ya que si nos enconramos en el mayor del subarbol izquierdo de la raiz
-//deberemos ascender todo el arbol y luego descemder por el 
-//subarbol derecho hasta el menor sienod coste aproximable a log(n)
+//En el peor de los casos tiene coste o(n)
+//Parámetros:
+//Entrada/salida: Colección de tipo coleccion
 template <typename K, typename D>
 bool avanza(coleccion<K,D> &c);
 
-/***********************************************
-    *Funciones auxiliares
-    *––––––––––––––––––––––––––––––––––––––––––
-    *NO SON PARTE DE LA ESPECIFICACIÓN PÚBLICA
-    *––––––––––––––––––––––––––––––––––––––––––
-    ***********************************************/
+//fin de interfaz
 
+
+/***********************************************
+    *––––––––––––––––––––––––––––––––––––––––––
+    *EMPIEZA LA PARTE PRIVADA
+    *––––––––––––––––––––––––––––––––––––––––––
+***********************************************/
+//Funciones auxiliares
 //Devuelve true si en el abb existe un nodo con clave key
 template <typename K, typename D>
 bool existeR(typename coleccion<K, D>::nodo *a, K key);
@@ -180,9 +207,7 @@ int eliminarR(typename coleccion<K, D>::nodo *&a, K key);
 template <typename K, typename D>
 bool obtenerInfoR(typename coleccion<K, D>::nodo *a, K key, D &data, int &rp);
 
-//fin de interfaz
-// Declaración:
-//–––––––––––––
+
 
 
 template <typename K, typename D>
@@ -207,32 +232,35 @@ struct coleccion{
 
     
 private:
-    //ATRIBUTOS
-    //Cada coleccion guarda la dirección del
-    //primer elemento (raiz) del arból binario,
-    //además de el número de nodos (num), y el numero de
-    //repeticiones totales, esto sera la suma de las
-    //repetciones de cada nodo
-    //contará con un puntero auxiliar de uso EXCLUSIVO
-    //del iterador
+    //La colección estará implementada mediante un tipo coleccion que 
+    //esta compuesta por un ABB, donde se guardarán las ternas en sus nodos
+    //cada nodo tendra una terna, he hijo izquiera y derecho,
+    //los hijos izqierdos tendrán una terna con clave menor 
+    // y los hijos derechos tendran una terna con clave mayor.
+    //
+    //el tipo colección también tendrá dos datos de tipo 
+    // int los cuales guardaran el valor equivalente al 
+    //número de nodos (num) y al numerode repetciones totales
+    // de todas las ternas de la colección (reps)
+    // el tipo colección contará con una pila que se usará para
+    //implementar el iterador
 
-    //La colección se estructurará a modo de ABB
+    
 
     //Se defie los nodos propios de la coleccion
     struct nodo
     {
-        //ATRIBUTOS
-        //Cada nodo cuenta con un dato y clave (tipo genérico)
-        //también se almacena cuantas veces se repite cada nodo
-        //además contará con dos punteros correpondientes a
-        //su hijo derecho y su hijo izquierdo,
+        //Los nodos de la coleccion estan compuestos por la terna de valores
+        //clave de tipo K, dato de tipo D y rep de tipo int
+        //ademas contarán cons dos punteros a nodo para sus hijos izquierdo y derecho
+        
         D dato;
         K clave;
         int rep;
         nodo *izq;
         nodo *der;
 
-        };
+    };
         nodo *raiz;//primer elemento
         int reps;//suma de repeteciones de todos los nodos
         int num;//numero de nodos
