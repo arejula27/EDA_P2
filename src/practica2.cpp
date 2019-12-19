@@ -122,11 +122,18 @@ void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
         //El libro está en la en la colección
         int num;
         libro book;
-        obtenerInfo(c, key,book, num);
+        if(obtenerInfo(c, key,book, num)){
+
+            f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num) << "\n";
+        }
+        else{
+
+            f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(0) << "\n";
+        }
         
         
         
-        f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num) << "\n";
+        
     }
     else
     {
