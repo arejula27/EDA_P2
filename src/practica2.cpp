@@ -112,28 +112,28 @@ void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     getline(f1, key);
 
     int varRep1,varRep2;
+      int varCla1,varCla2;
     numCardinal(c,varRep1);
+    numClaves(c,varCla1);
     //Se elimina una repetición del libro y se escribe en salida.txt
     quitarRep(c, key);
-    numCardinal(c,varRep2);
+    numCardinal(c,varRep2);  
+    numClaves(c,varCla2);
     
-    
-    if (varRep1>varRep2){
+    if(varCla1>varCla2){
+         f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(0) << "\n";
+
+    }
+    else if (varRep1>varRep2){
         //El libro está en la en la colección
         int num;
         libro book;
-        if(obtenerInfo(c, key,book, num)){
+        //si se quita repeticion y solo quedaba una se ha borrado la terna por lo 
+        //obtener info falla, eso quioere decir que ahora hay 0 ejemplares
+        obtenerInfo(c, key,book, num);
 
             f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(num) << "\n";
-        }
-        else{
-
-            f2 << "ejemplar ELIMINADO: " << key << " --- " << to_string(0) << "\n";
-        }
-        
-        
-        
-        
+           
     }
     else
     {
