@@ -20,8 +20,7 @@ using namespace std;
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección.
 //POST: Se ha añadido una línea en salida.txt resultado de una inserción.
 
-//esta función llama a introducir (log(n)) y a numClaves(o(1)) 
-//por lo que en el peor de los casos tiene coste  coste o(log(n))
+//El coste de AL viene dado por el coste de la funcion introducir del TAD coleccion
 
 void AL(ifstream &f1, ofstream &f2, coleccion<string,libro > &c)
 {
@@ -68,8 +67,8 @@ void AL(ifstream &f1, ofstream &f2, coleccion<string,libro > &c)
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de añadir un ejemplar a la colección
 
-//esta función llama a agnadirRep (log(n)) y a numCardinal(o(1)) 
-//por lo que en el peor de los casos tiene coste  coste o(log(n))
+//El coste de AE viene dado por el coste de la funcion agnadirRep del TAD coleccion
+
 void AE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
@@ -103,8 +102,8 @@ void AE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de eliminar un ejemplar
 
-//esta función llama a quitarRep (log(n)) y a numCardinal(o(1)) 
-//por lo que en el peor de los casos tiene coste  coste o(log(n))
+//El coste de EE viene dado por el coste de la funcion quitarRep del TAD coleccion
+
 void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
 
@@ -140,8 +139,7 @@ void EE(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt resultado de eliminar un libro de la colección
 
-//esta función llama a eliminar (log(n)) y a numClaves(o(1)) 
-//por lo que en el peor de los casos tiene coste  coste o(log(n))
+//El coste de EL viene dado por el coste de la funcion eliminar del TAD coleccion
 void EL(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
 
@@ -173,8 +171,8 @@ void EL(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //POST: Se ha añadido una línea en salida.txt con información del libro
 
-//esta función llama a obtenerInfo(log(n)) 
-//por lo que  tiene coste  coste o(log(n))
+//El coste de LD viene dado por el coste de la funcion obtenerInfo del TAD coleccion
+
 void LD(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
@@ -199,7 +197,10 @@ void LD(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 
 //PRE: f1 y f2 son flujos de entrada y salida. c es un tipo colección
 //Se ha añadido una línea en salida.txt con información de la colección 
-//Recorremos todo el arbol por lo que tiene coste lineal o(n)
+
+//El coste de LT viene dado por el bucle cuya guarda es existeSiguiente(c).
+//El coste de LT será n*coste(existeSiguiente), siendo n el num. elem. en la coleccion
+
 void LT(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
 {
     
@@ -217,10 +218,6 @@ void LT(ifstream &f1, ofstream &f2, coleccion<string, libro> &c)
     int repBook ;
     iniciarIterador(c);
     //Bucle para escribir cada la información de cada libro
-    //Aunque existeSiguiente tiene coste constante,
-    //al usarlo como guarda se considera coste lineal en la altura
-    //siguineteNodo, infoLibro y avanza tienen coste constante, como las realizamos 
-    // n veces siendo n el numero de elementos en c este bucle tiene coste o(n)
     while( existeSiguiente(c) ){
 
         
